@@ -264,6 +264,55 @@
       font-weight: 700;
     }
 
+    .qr-card {
+      display: grid;
+      grid-template-columns: 112px minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .qr-code {
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .qr-code svg,
+    .qr-code img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .qr-copy {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .qr-copy strong {
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 950;
+    }
+
+    .qr-copy span,
+    .qr-copy small {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
     .source-note {
       color: var(--muted);
       font-size: 13px;
@@ -900,10 +949,15 @@
       }
 
       .metric-grid,
+      .qr-card,
       .likert,
       .choice-row,
       .rules-grid {
         grid-template-columns: 1fr;
+      }
+
+      .qr-code {
+        width: 132px;
       }
 
       .persona-card,
@@ -988,6 +1042,16 @@
           <div class="metric"><b>100</b><span>岗位匹配分</span></div>
           <div class="metric"><b>100</b><span>背景竞争力</span></div>
           <div class="metric"><b>5</b><span>维能力图</span></div>
+        </div>
+        <div class="qr-card" aria-label="扫码进入测评">
+          <div class="qr-code">
+            <img src="ai-product-assessment-qr.svg" alt="扫码进入 AI 产品方向测评">
+          </div>
+          <div class="qr-copy">
+            <strong>扫码进入测评</strong>
+            <span>微信扫一扫，打开后直接答题。</span>
+            <small>kira621.github.io/202606AI-</small>
+          </div>
         </div>
         <p class="source-note">依据课程中的 AI 产品分类、AI 产品经理工作内容和五维自评框架设计。</p>
       </aside>
