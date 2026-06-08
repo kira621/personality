@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI 产品方向测评</title>
+  <meta name="description" content="测出你的 AI 产品方向、产品人格和岗位可行性。">
+  <meta property="og:title" content="AI 产品方向测评">
+  <meta property="og:description" content="我的产品人格是XXXX，快来测测你的吧">
   <style>
     :root {
       --ink: #19212a;
@@ -121,15 +124,11 @@
     }
 
     .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 360px;
-      gap: 18px;
-      align-items: stretch;
-      margin-bottom: 22px;
+      display: block;
+      margin-bottom: 18px;
     }
 
     .hero-main,
-    .hero-side,
     .panel {
       background: rgba(255, 255, 255, 0.92);
       border: 1px solid rgba(216, 222, 232, 0.95);
@@ -138,11 +137,10 @@
     }
 
     .hero-main {
-      padding: 28px;
-      min-height: 264px;
+      padding: 24px 28px;
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: 20px;
+      gap: 16px;
       overflow: hidden;
       position: relative;
     }
@@ -163,7 +161,7 @@
 
     h1 {
       margin: 0;
-      max-width: 760px;
+      max-width: 900px;
       font-size: clamp(30px, 4.5vw, 54px);
       line-height: 1.05;
       letter-spacing: 0;
@@ -171,7 +169,7 @@
 
     .lead {
       margin: 18px 0 0;
-      max-width: 690px;
+      max-width: 860px;
       color: #344054;
       font-size: 17px;
     }
@@ -226,100 +224,6 @@
     @keyframes floatSpark {
       0%, 100% { transform: translateY(0); opacity: .78; }
       50% { transform: translateY(-4px); opacity: 1; }
-    }
-
-    .hero-side {
-      padding: 22px;
-      display: grid;
-      align-content: space-between;
-      gap: 18px;
-    }
-
-    .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .metric {
-      min-height: 92px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 14px;
-      background: #fff;
-    }
-
-    .metric b {
-      display: block;
-      font-size: 25px;
-      line-height: 1;
-      margin-bottom: 8px;
-      color: var(--blue);
-    }
-
-    .metric span {
-      display: block;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .qr-card {
-      display: grid;
-      grid-template-columns: 124px minmax(0, 1fr);
-      gap: 14px;
-      align-items: center;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 12px;
-      background: #fff;
-    }
-
-    .qr-code {
-      width: 124px;
-      height: 124px;
-      aspect-ratio: 1;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-      overflow: hidden;
-    }
-
-    .qr-code svg,
-    .qr-code img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    .qr-copy {
-      display: grid;
-      gap: 6px;
-      min-width: 0;
-    }
-
-    .qr-copy strong {
-      color: var(--ink);
-      font-size: 16px;
-      font-weight: 950;
-    }
-
-    .qr-copy span,
-    .qr-copy small {
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 750;
-      line-height: 1.35;
-      overflow-wrap: anywhere;
-    }
-
-    .source-note {
-      color: var(--muted);
-      font-size: 13px;
-      margin: 0;
     }
 
     .progress-shell {
@@ -553,6 +457,11 @@
       gap: 16px;
     }
 
+    .result-stack {
+      display: grid;
+      gap: 16px;
+    }
+
     .panel {
       padding: 22px;
     }
@@ -612,6 +521,58 @@
       font-size: 12px;
       font-weight: 800;
       color: rgba(255, 255, 255, 0.78);
+    }
+
+    .feasibility-card {
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      gap: 16px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: linear-gradient(135deg, #fff, #f5f7ff);
+    }
+
+    .feasibility-score {
+      min-height: 76px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--violet);
+      border-radius: 8px;
+      font-size: 34px;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .score-explain {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .score-chip {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .score-chip strong {
+      display: block;
+      color: var(--ink);
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .score-chip span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
     }
 
     .type-code {
@@ -692,6 +653,53 @@
       margin: 16px 0 0;
       color: #344054;
       font-size: 16px;
+    }
+
+    .persona-profile {
+      display: grid;
+      gap: 14px;
+      line-height: 1.78;
+    }
+
+    .persona-profile p {
+      margin: 0;
+    }
+
+    .profile-highlight {
+      display: inline;
+      border-radius: 6px;
+      padding: 0 4px;
+      font-weight: 950;
+    }
+
+    .profile-highlight.blue {
+      color: var(--blue);
+      background: rgba(49, 87, 213, 0.1);
+    }
+
+    .profile-highlight.teal {
+      color: var(--teal);
+      background: rgba(15, 159, 143, 0.1);
+    }
+
+    .profile-highlight.orange {
+      color: var(--orange);
+      background: rgba(240, 138, 36, 0.12);
+    }
+
+    .profile-highlight.rose {
+      color: var(--rose);
+      background: rgba(223, 91, 103, 0.1);
+    }
+
+    .profile-highlight.violet {
+      color: var(--violet);
+      background: rgba(109, 91, 208, 0.11);
+    }
+
+    .profile-highlight.green {
+      color: var(--green);
+      background: rgba(46, 157, 102, 0.1);
     }
 
     .reason-list {
@@ -823,79 +831,6 @@
       margin-top: 16px;
     }
 
-    .rules {
-      margin-top: 28px;
-    }
-
-    details {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.92);
-      overflow: hidden;
-    }
-
-    summary {
-      cursor: pointer;
-      padding: 16px 18px;
-      font-weight: 900;
-      color: var(--ink);
-    }
-
-    .rules-body {
-      border-top: 1px solid var(--line);
-      padding: 18px;
-      color: #344054;
-      background: #fff;
-    }
-
-    .rules-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .rule-box {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 14px;
-      background: #fbfcff;
-    }
-
-    .rule-box h3 {
-      margin: 0 0 8px;
-      font-size: 15px;
-    }
-
-    .rule-box p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .mapping-table {
-      width: 100%;
-      margin-top: 14px;
-      border-collapse: collapse;
-      overflow: hidden;
-      border-radius: 8px;
-      font-size: 13px;
-    }
-
-    .mapping-table th,
-    .mapping-table td {
-      border: 1px solid var(--line);
-      padding: 10px;
-      text-align: left;
-      vertical-align: top;
-    }
-
-    .mapping-table th {
-      background: #eef2f8;
-      color: var(--ink);
-      font-weight: 900;
-    }
-
     .footer {
       margin-top: 26px;
       color: var(--muted);
@@ -946,22 +881,15 @@
       }
 
       .hero-main,
-      .hero-side,
       .panel {
         padding: 16px;
       }
 
-      .metric-grid,
-      .qr-card,
       .likert,
       .choice-row,
-      .rules-grid {
+      .score-explain,
+      .feasibility-card {
         grid-template-columns: 1fr;
-      }
-
-      .qr-code {
-        width: 132px;
-        height: 132px;
       }
 
       .persona-card,
@@ -1020,7 +948,7 @@
       <div class="hero-main">
         <div class="hero-copy">
           <h1 id="heroTitle">测出你更适合的 AI 产品方向</h1>
-          <p class="lead">面向还没毕业、准备做 AI 产品项目和求职定位的同学。结果会给出岗位方向、匹配得分、产品人格、背景竞争力和你自己的选择。</p>
+          <p class="lead">面向还没毕业、准备做 AI 产品项目和求职定位的同学。结果会先给出 AI 产品可行性，再给出岗位方向、综合匹配分、产品人格和你自己的选择。</p>
           <div class="hero-actions">
             <a class="button" href="#assessment">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -1028,37 +956,9 @@
               </svg>
               开始测评
             </a>
-            <a class="button secondary" href="#rules">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M4 5h16M4 12h16M4 19h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-              查看规则
-            </a>
           </div>
         </div>
       </div>
-      <aside class="hero-side" aria-label="测评摘要">
-        <div class="metric-grid">
-          <div class="metric"><b>16</b><span>能力题</span></div>
-          <div class="metric"><b>8</b><span>倾向题</span></div>
-          <div class="metric"><b>8</b><span>背景题</span></div>
-          <div class="metric"><b>1</b><span>自选题</span></div>
-          <div class="metric"><b>100</b><span>岗位匹配分</span></div>
-          <div class="metric"><b>100</b><span>背景竞争力</span></div>
-          <div class="metric"><b>5</b><span>维能力图</span></div>
-        </div>
-        <div class="qr-card" aria-label="扫码进入测评">
-          <div class="qr-code">
-            <img src="ai-product-assessment-qr.svg" alt="扫码进入 AI 产品方向测评">
-          </div>
-          <div class="qr-copy">
-            <strong>扫码进入测评</strong>
-            <span>微信扫一扫，打开后直接答题。</span>
-            <small>适合投屏、海报和群发截图。</small>
-          </div>
-        </div>
-        <p class="source-note">依据课程中的 AI 产品分类、AI 产品经理工作内容和五维自评框架设计。</p>
-      </aside>
     </section>
 
     <div class="progress-shell" aria-label="答题进度">
@@ -1099,10 +999,10 @@
       <div class="section-title">
         <div>
           <h2 id="resultTitle">测评结果</h2>
-          <p>主推方向按岗位匹配分排序，备选方向用于项目选题和投递关键词。</p>
+          <p>先看主推岗位，再看产品人格、五维能力、AI 产品可行性和岗位排序。</p>
         </div>
       </div>
-      <div class="result-grid">
+      <div class="result-stack">
         <div class="panel">
           <div class="result-top">
             <div>
@@ -1113,7 +1013,7 @@
             <div class="result-character" id="resultCharacter" aria-hidden="true"></div>
             <div class="score-badge">
               <b id="matchScore">0</b>
-              <span>岗位匹配分</span>
+              <span>综合匹配分</span>
             </div>
           </div>
           <p class="result-copy" id="resultCopy"></p>
@@ -1121,146 +1021,89 @@
           <div class="result-actions">
             <button class="button" type="button" id="copyBtn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"/>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 16V4M7 9l5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              复制结果
+              <span id="shareLabel">一键分享</span>
             </button>
-            <button class="button secondary" type="button" id="editBtn">
+            <button class="button secondary" type="button" id="qrShareBtn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M14 14h2v2h-2zM18 14h2v4h-2zM14 18h4v2h-4z" fill="currentColor"/>
               </svg>
-              调整答案
+              <span id="qrShareLabel">分享二维码</span>
             </button>
           </div>
         </div>
-        <aside class="panel">
-          <p class="mini-title">五维能力图</p>
-          <div class="radar-card" id="radarChart" aria-label="五维能力雷达图"></div>
-          <div class="bars" id="dimensionBars"></div>
-          <p class="mini-title" style="margin-top:22px;">岗位排序</p>
-          <ul class="role-list" id="roleRanking"></ul>
-        </aside>
-      </div>
-      <div class="result-grid" style="margin-top:16px;">
-        <div class="panel">
-          <p class="mini-title">产品人格角色</p>
-          <div class="persona-card character-card">
-            <div class="persona-avatar" id="personaAvatar" aria-hidden="true"></div>
-            <div class="persona-code" id="personaCode">INTJ</div>
-            <div>
-              <strong class="persona-title" id="personaTitle">系统战略家</strong>
-              <span class="persona-subtitle" id="personaSubtitle">求职定位版，不是心理学诊断</span>
+
+        <div class="result-grid">
+          <div class="panel">
+            <p class="mini-title">产品人格角色</p>
+            <div class="persona-card character-card">
+              <div class="persona-avatar" id="personaAvatar" aria-hidden="true"></div>
+              <div class="persona-code" id="personaCode">INTJ</div>
+              <div>
+                <strong class="persona-title" id="personaTitle">系统战略家</strong>
+                <span class="persona-subtitle" id="personaSubtitle">求职定位版，不是心理学诊断</span>
+              </div>
             </div>
+            <div class="result-copy persona-profile" id="personaDescription"></div>
+            <ul class="persona-list" id="personaList"></ul>
           </div>
-          <p class="result-copy" id="personaDescription"></p>
-          <ul class="persona-list" id="personaList"></ul>
+          <aside class="panel">
+            <p class="mini-title">投递关键词</p>
+            <ul class="role-list" id="keywordList"></ul>
+          </aside>
         </div>
-        <aside class="panel">
-          <p class="mini-title">投递关键词</p>
-          <ul class="role-list" id="keywordList"></ul>
-        </aside>
-      </div>
-      <div class="result-grid" style="margin-top:16px;">
+
+        <div class="result-grid">
+          <div class="panel">
+            <p class="mini-title">五维能力图</p>
+            <div class="radar-card" id="radarChart" aria-label="五维能力雷达图"></div>
+            <div class="bars" id="dimensionBars"></div>
+          </div>
+          <aside class="panel">
+            <p class="mini-title">最终选择对照</p>
+            <ul class="persona-list" id="fitList"></ul>
+          </aside>
+        </div>
+
         <div class="panel">
-          <p class="mini-title">硬背景竞争力</p>
-          <div class="persona-card">
-            <div class="persona-code" id="backgroundScore">0</div>
+          <p class="mini-title">AI 产品可行性</p>
+          <div class="feasibility-card">
+            <div class="feasibility-score" id="backgroundScore">0</div>
             <div>
-              <strong class="persona-title" id="backgroundLevel">背景待评估</strong>
-              <span class="persona-subtitle" id="backgroundSubtitle">用于判断求职门槛，不代表能力上限</span>
+              <strong class="persona-title" id="backgroundLevel">可行性待评估</strong>
+              <span class="persona-subtitle" id="backgroundSubtitle">背景底盘 80% + 准备工作 20%</span>
             </div>
           </div>
           <p class="result-copy" id="backgroundSummary"></p>
-          <ul class="persona-list" id="backgroundList"></ul>
-        </div>
-        <aside class="panel">
-          <p class="mini-title">最终选择对照</p>
-          <ul class="persona-list" id="fitList"></ul>
-        </aside>
-      </div>
-    </section>
-
-    <section class="rules" id="rules" aria-labelledby="rulesTitle">
-      <details>
-        <summary id="rulesTitle">测评题目与计分规则</summary>
-        <div class="rules-body">
-          <p>题目由四部分组成：16 道能力量表题评估五个产品能力维度，8 道二选一倾向题生成类似 INTJ、ENTJ 的产品人格代码，8 道硬背景题评估求职门槛，1 道开放题记录你自己的真实选择。岗位结果不是性格标签，而是用于校招项目选题、JD 匹配和简历证据准备。</p>
-          <div class="rules-grid">
-            <div class="rule-box">
-              <h3>能力分</h3>
-              <p>每题 1-5 分，按题目权重计入用户/业务、技术/工具、数据/评测、表达/推进、结构/落地五个维度。维度分 = 加权得分 / 加权满分 × 100。</p>
+          <div class="score-explain" aria-label="可行性分数构成">
+            <div class="score-chip">
+              <strong id="backgroundBaseScore">0</strong>
+              <span>背景底盘分 · 权重 80%</span>
             </div>
-            <div class="rule-box">
-              <h3>产品人格</h3>
-              <p>I/E 判断独立深潜或外部推进倾向；N/S 判断探索试错或结构交付倾向；T/F 判断证据理性或人群共情倾向；J/P 判断收束执行或开放迭代倾向。</p>
-            </div>
-            <div class="rule-box">
-              <h3>岗位匹配分</h3>
-              <p>每个岗位有一组权重，例如模型产品更看重技术和数据，解决方案更看重表达推进和业务理解。岗位分 = 五维能力分与倾向分加权后求和。</p>
-            </div>
-            <div class="rule-box">
-              <h3>结果解释</h3>
-              <p>系统展示得分最高的主推岗位、前 3 个备选岗位，并根据你的高分维度、低分缺口和产品人格生成原因与泛娱乐点评。</p>
-            </div>
-            <div class="rule-box">
-              <h3>背景竞争力</h3>
-              <p>学历、学校、专业、实习、AI 项目和材料完整度会形成 0-100 分背景分。91 分及以上强匹配，81-90 可冲刺，70-80 可尝试，60-69 建议先补实习和项目，60 分以下可先考虑 AI 运营岗位。</p>
-            </div>
-            <div class="rule-box">
-              <h3>自选方向</h3>
-              <p>最后一道开放题不参与打分，只在结果页展示。它用于对照系统推荐、产品人格和学生自己的真实意愿。</p>
+            <div class="score-chip">
+              <strong id="preparationScore">0</strong>
+              <span>准备工作分 · 权重 20%</span>
             </div>
           </div>
-          <table class="mapping-table" aria-label="岗位映射规则">
-            <thead>
-              <tr>
-                <th>岗位方向</th>
-                <th>高匹配信号</th>
-                <th>决策原因</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>AI 应用产品经理</td>
-                <td>用户/业务高，技术中高，探索意愿强</td>
-                <td>适合从真实场景切入，设计 AI Native 或传统产品 + AI 功能。</td>
-              </tr>
-              <tr>
-                <td>平台/模型产品经理</td>
-                <td>技术/工具高，数据高，底座质量倾向强</td>
-                <td>适合围绕模型指标、提示词、成本、幻觉、准确性做迭代。</td>
-              </tr>
-              <tr>
-                <td>数据评测产品经理</td>
-                <td>数据/评测最高，结构交付强，技术舒适度高</td>
-                <td>适合做数据集、标注规范、评测体系和 bad case 分析。</td>
-              </tr>
-              <tr>
-                <td>行业解决方案产品经理</td>
-                <td>表达推进高，业务理解高，结构交付强</td>
-                <td>适合面向客户业务需求、AI 能力边界和落地方案推进项目。</td>
-              </tr>
-              <tr>
-                <td>增长/商业化产品经理</td>
-                <td>业务理解高，数据中高，愿意背增长/营收指标</td>
-                <td>适合围绕转化、留存、付费和商业闭环定义产品动作。</td>
-              </tr>
-              <tr>
-                <td>AI 产品运营/项目推进</td>
-                <td>表达推进高，结构交付高，业务与数据均衡</td>
-                <td>适合先从内容、用户、活动、项目协同切入 AI 产品团队。</td>
-              </tr>
-            </tbody>
-          </table>
+          <ul class="persona-list" id="backgroundList"></ul>
         </div>
-      </details>
+
+        <div class="panel">
+          <p class="mini-title">岗位排序</p>
+          <ul class="role-list" id="roleRanking"></ul>
+        </div>
+      </div>
     </section>
 
     <p class="footer">AI 产品求职实战营 · 第一课配套测评工具</p>
   </main>
 
   <script>
+    const ASSESSMENT_URL = "https://personality.kiraown.com/";
+
     const dimLabels = {
       business: "用户/业务理解",
       tech: "技术/工具舒适度",
@@ -1706,6 +1549,31 @@
       }
     };
 
+    const personaProfiles = {
+      INTJ: "你像产品世界里的系统制图师，先不急着冲进人群，而是会把赛道、能力边界、用户路径和指标关系摆成一张看得懂的地图。你的优势不是“灵感爆发”，而是能把模糊方向拆成假设、模块、优先级和迭代路线。做 AI 产品时，你会天然关注模型能力边界、长期壁垒、数据闭环和产品结构是否可扩展。适合平台、模型、评测、策略型应用产品。需要提醒的是，别只在脑内把方案推演到完美，校招更看证据，最好尽快做出一个能演示、能复盘、能被追问的项目。",
+      ENTJ: "你像项目里自带进度条的战役指挥官，看到一个目标，会自然开始拆资源、排节奏、找负责人和定义胜利标准。你的产品人格更偏外部推进型，适合有明确指标、复杂协作和 deadline 的方向。AI 产品里，解决方案、增长商业化、产品运营推进都很吃这种气质：既要把话讲清，也要把事推完。你的吸引力在于能让团队相信“这事可以做成”。但要注意，AI 产品不是只靠气势推进，模型效果、数据证据和用户反馈要跟上，否则容易把不成熟的方案推进得太快。",
+      INTP: "你像把 AI 产品拆开研究的模型拆解师，别人问“好不好用”，你会继续追问：数据从哪来、Prompt 怎么写、模型为什么不稳定、指标怎么定义。你的优势是分析耐心和抽象能力，适合模型平台、数据评测、开发者工具、知识库/RAG 等需要理解系统原理的方向。你不一定最爱做热闹汇报，但能在复杂问题里找到真正的变量。求职时要避免只展示思考过程，最好把实验设计、bad case 归因、指标变化和改进动作做成清楚材料，让面试官看到你的分析确实能推动产品变好。",
+      ENTP: "你像 AI 产品里的玩法实验家，脑内经常同时跑着几个新点子：这个能不能做成 Agent，那个能不能变成内容工具，另一个是不是可以拿来做增长实验。你的强项是发现新机会、快速启动和用原型验证方向，适合 AI 应用产品、泛娱乐工具、创作工具和创新项目。你会让测评结果看起来很有生命力，因为你真的愿意试。短板也很典型：想法多时容易分散。建议把最兴奋的想法压缩成一个 7 天可验证项目，用 Demo、用户反馈和指标记录把“好玩”变成“靠谱”。",
+      INFJ: "你像场景深处的洞察师，能从一句用户抱怨里听出真实处境、情绪压力和未被表达的需求。你的产品人格适合从人群、场景和长期价值出发，尤其适合 AI 应用、教育、咨询、陪伴、知识服务等需要理解用户心理的方向。你的优势不是把功能堆满，而是能解释为什么这个功能会让人愿意用。求职时要把这份细腻变成可被验证的证据：访谈记录、用户旅程、痛点分级、方案取舍和反馈复盘。这样你的共情不会停留在“感觉”，而会成为产品判断依据。",
+      ENFJ: "你像项目里的共创推动者，擅长把不同角色拉到同一张桌子上：用户愿意讲，业务愿意配合，团队也知道下一步怎么做。你的产品人格很适合行业解决方案、ToB 项目推进、产品运营和客户共创型岗位。AI 产品落地常常不是一个功能问题，而是业务流程、数据条件、组织信任和培训使用的问题，你的沟通与组织能力会很有价值。需要注意的是，别只做“气氛很好”的协调者，要把每次沟通沉淀成需求、约束、风险和决策记录，证明你能推动产品而不是只推动关系。",
+      INFP: "你像体验叙事师，会把 AI 产品想象成一段用户旅程，而不是一堆功能按钮。你关注意义、表达、内容质感和使用时的心理感受，适合 AI 创作、教育、内容工具、陪伴产品和体验型应用。你的优势是能发现那些“说不清但很影响使用”的细节：文案是否冒犯、流程是否打断、生成结果是否有温度。求职时，不要让作品只停留在审美和想法，可以用用户故事、原型前后对比、反馈截图和改版理由来证明：你的敏感不是情绪化，而是能转化成更好的产品体验。",
+      ENFP: "你像创意发起人，适合站在新玩法、新人群和新传播方式的入口处点火。AI 产品里很多机会来自“原来这也能被 AI 改造”，你容易在内容、社区、教育、娱乐和轻量工具中找到有趣切口。你的优势是感染力、启动速度和把复杂东西讲得让人想试。挑战也明显：热情容易跑在结构前面。建议给自己加一个产品化护栏：每个想法都写清目标用户、核心场景、最小 Demo、验证指标和复盘结论。这样你不只是好玩，而是能把好玩推成结果证据。",
+      ISTJ: "你像数据质检官，擅长把混乱材料变成清楚口径，把看似主观的判断变成标准、表格和流程。AI 产品里，评测、标注、质检、数据闭环、项目管理型产品都很需要这种稳定感。你的优势是可靠、细致、可复用，能让团队少踩很多“口径不一致”“结论没出处”的坑。娱乐一点说，你可能是最不愿意乱合并单元格的人。求职时要把严谨包装得更产品化：不要只说自己细心，要展示你如何定义标准、发现问题、推动修正，并让结果在下一轮变得更好。",
+      ESTJ: "你像落地推进官，看到一个模糊任务，会把它拆成责任人、时间点、验收标准和风险清单。你的产品人格适合行业解决方案、项目推进、产品运营、商业化落地等方向，尤其适合需要把 AI 能力真正放进业务流程的岗位。你不太迷恋空谈概念，更在意事情能不能按时交付、结果能不能被验证。需要提醒的是，AI 产品有时会遇到模型效果不稳定、需求变化快的问题，过度追求确定性会让你焦虑。建议保留执行力，同时学会用实验和迭代管理不确定性。",
+      ISFJ: "你像用户守护者，适合盯住那些别人觉得“小但烦”的体验问题：流程卡顿、说明不清、反馈没人接、功能上线后没人会用。AI 产品不是只要炫技，很多时候决定留存的是稳定、耐心和持续优化。你适合 AI 产品运营、客服/教育/办公场景应用、体验优化和项目支持型岗位。你的优势是服务意识强、观察细、能长期把小问题修到位。求职时可以把用户反馈、FAQ、流程优化、培训材料和改版记录做成作品，让别人看到你不是只会照顾人，而是能把照顾转成产品改进。",
+      ESFJ: "你像社群连接官，擅长让用户愿意参与、愿意反馈，也让团队知道用户到底发生了什么。AI 产品早期很需要这种连接能力，因为很多产品还没完全成熟，需要靠社群、活动、共创和运营节奏不断收集信号。你适合 AI 产品运营、用户运营、训练营项目、解决方案交付等方向。你的魅力在于能把冷场拉热，把信息差补齐，把一群人带进同一个节奏。要注意的是，别让自己只成为“热心接口人”，要把活动数据、用户分层、反馈归因和产品建议沉淀出来。",
+      ISTP: "你像工具实干派，判断一个想法有没有戏，最想做的往往不是开会，而是先搭一版 Demo 跑跑看。你适合 AI 工具链、自动化、模型平台、内部效率产品和技术型应用产品。你的优势是动手、排障、关注真实可运行的东西，能把抽象讨论变成可验证样品。求职时这很有竞争力，因为 AI 产品岗位越来越喜欢“能用工具把想法做出来”的人。需要补的是表达和复盘：Demo 跑通只是第一步，还要讲清用户是谁、解决什么问题、效果如何、下一版怎么改。",
+      ESTP: "你像增长冲锋派，对机会、反馈和指标很敏感。看到一个入口，你会想能不能测转化；看到一个新玩法，你会想能不能快速上线试试。你的产品人格适合增长、商业化、活动运营、轻量 AI 应用和节奏快的项目。你的优势是行动快、抗压强、愿意用结果说话，适合在不确定场景里先打出反馈。但要注意，AI 产品的增长不能只追短期刺激，也要看模型成本、体验质量和长期留存。建议用实验文档约束自己：假设、样本、指标、结果、复盘缺一不可。",
+      ISFP: "你像体验打磨师，容易在细节里发现产品的气质：按钮是否顺手、文案是否自然、生成内容是否有审美、状态反馈是否让人安心。AI 创作工具、内容产品、轻量应用和交互体验优化都很适合你。你的优势不是把功能做得最多，而是把使用过程磨得更像人会喜欢的样子。求职时要避免只说“我审美好”或“我喜欢体验”，可以用前后对比图、用户反馈、交互流程、提示词效果和改版理由来证明你的判断。这样你的感受力会变成可交付的产品能力证据。",
+      ESFP: "你像现场带动者，擅长把一个功能讲成大家愿意试的玩法，把一个 AI 工具变成活动、内容或社群里的参与感。你适合 AI 产品运营、泛娱乐应用、内容活动、用户增长和传播型项目。你的优势是表达有感染力、能快速感知用户反应，也能把产品包装得更容易被普通人理解。要注意的是，热闹不是结果，转化、留存、反馈质量和复盘同样重要。建议把每次活动都沉淀成数据和产品建议，让别人看到你不仅能把场子带起来，也能把产品往前推。"
+    };
+
+    Object.entries(personaProfiles).forEach(([code, profile]) => {
+      if (personas[code]) {
+        personas[code].profile = profile;
+      }
+    });
+
     const personaAvatars = {
       INTJ: { bg: "#e8f7f4", shirt: "#3157d5", accent: "#0f9f8f", hair: "side", hairColor: "#243b8f", prop: "map", mood: "focus" },
       ENTJ: { bg: "#fff1e5", shirt: "#df5b67", accent: "#f08a24", hair: "slick", hairColor: "#8a2f4d", prop: "megaphone", mood: "bold" },
@@ -2006,6 +1874,9 @@
       const traitMax = { ...traits };
       let backgroundRaw = 0;
       let backgroundMax = 0;
+      let preparationRaw = 0;
+      let preparationMax = 0;
+      let preparationAnswer = null;
       const backgroundAnswers = [];
       const selfChoice = String(answers.q33 || "").trim();
 
@@ -2021,15 +1892,22 @@
           const selected = question.options.find(option => option.value === answer);
           if (selected) {
             const maxOptionScore = Math.max(...question.options.map(option => option.score));
-            backgroundRaw += selected.score;
-            backgroundMax += maxOptionScore;
-            backgroundAnswers.push({
+            const answerRecord = {
               id: question.id,
               text: question.text,
               label: selected.label,
               score: selected.score,
               maxScore: maxOptionScore
-            });
+            };
+            if (question.id === "q32") {
+              preparationRaw += selected.score;
+              preparationMax += maxOptionScore;
+              preparationAnswer = answerRecord;
+            } else {
+              backgroundRaw += selected.score;
+              backgroundMax += maxOptionScore;
+              backgroundAnswers.push(answerRecord);
+            }
           }
         } else if (question.type === "text") {
           continue;
@@ -2055,12 +1933,16 @@
       }));
 
       const signal = { ...dims, ...traitScores };
+      const background = buildBackground(backgroundRaw, backgroundMax, backgroundAnswers, preparationRaw, preparationMax, preparationAnswer);
       const ranked = roles.map(role => {
         const totalWeight = Object.values(role.weights).reduce((sum, weight) => sum + weight, 0);
         const raw = Object.entries(role.weights).reduce((sum, [key, weight]) => sum + ((signal[key] || 0) * weight), 0);
+        const skillScore = Math.round(raw / totalWeight);
         return {
           ...role,
-          score: Math.round(raw / totalWeight)
+          skillScore,
+          feasibilityScore: background.score,
+          score: Math.round((skillScore + background.score) / 2)
         };
       }).sort((a, b) => b.score - a.score);
 
@@ -2072,7 +1954,7 @@
         ranked,
         typeCode: buildTypeCode(traitScores),
         persona: buildPersona(traitScores, dims),
-        background: buildBackground(backgroundRaw, backgroundMax, backgroundAnswers),
+        background,
         selfChoice
       };
     }
@@ -2111,14 +1993,17 @@
       return { code, ...personas[code] };
     }
 
-    function buildBackground(raw, max, answers) {
-      const score = max ? Math.round((raw / max) * 100) : 0;
+    function buildBackground(raw, max, answers, preparationRaw, preparationMax, preparationAnswer) {
+      const baseScore = max ? Math.round((raw / max) * 100) : 0;
+      const preparationScore = preparationMax ? Math.round((preparationRaw / preparationMax) * 100) : 0;
+      const score = Math.round((baseScore * 0.8) + (preparationScore * 0.2));
       const ratio = item => item.maxScore ? item.score / item.maxScore : 0;
-      const sorted = [...answers].sort((a, b) => ratio(a) - ratio(b));
-      const weak = sorted.slice(0, 2);
-      const strong = [...answers].sort((a, b) => ratio(b) - ratio(a)).slice(0, 2);
+      const evaluatedAnswers = preparationAnswer ? [...answers, preparationAnswer] : [...answers];
+      const sorted = [...evaluatedAnswers].sort((a, b) => ratio(a) - ratio(b));
+      const weak = sorted.filter(item => ratio(item) < 0.85).slice(0, 2);
+      const strong = [...evaluatedAnswers].sort((a, b) => ratio(b) - ratio(a)).slice(0, 2);
       let level = "AI 产品可行性不高";
-      let summary = "当前硬背景对直接冲 AI 产品岗的支撑偏弱，建议先考虑 AI 运营、项目运营、内容运营等入口，再用项目和实习补足产品证据。";
+      let summary = "当前背景底盘对直接冲 AI 产品岗的支撑偏弱，建议先考虑 AI 运营、项目运营、内容运营等入口，再用项目和实习补足产品证据。";
       let subtitle = "可考虑转 AI 运营岗位";
       if (score >= 91) {
         level = "强匹配，准备好面试";
@@ -2138,21 +2023,23 @@
         summary = "直接冲 AI 产品岗的成功率偏低，建议优先补产品/运营/数据相关实习、AI 项目作品和岗位关键词证据。";
       }
       const notes = [
+        ["计分方式", `背景底盘 ${baseScore} 分 × 80% + 准备工作 ${preparationScore} 分 × 20% = 综合可行性 ${score} 分。`],
         ["优势信号", strong.map(item => `${item.label}`).join("；") || "暂无明显高分项"],
-        ["优先补强", weak.map(item => `${item.label}`).join("；") || "继续保持当前准备节奏"]
+        ["优先补强", weak.map(item => `${item.label}`).join("；") || "暂无明显短板，继续保持当前准备节奏"]
       ];
-      return { score, level, subtitle, summary, notes };
+      return { score, baseScore, preparationScore, level, subtitle, summary, notes };
     }
 
     function renderResults(result) {
       const best = result.ranked[0];
       const second = result.ranked[1];
       const closeRace = second && best.score - second.score <= 5;
-      const readiness = Math.round(Object.values(result.dims).reduce((sum, value) => sum + value, 0) / Object.values(result.dims).length);
 
       document.getElementById("bestRole").textContent = best.name;
       document.getElementById("matchScore").textContent = best.score;
-      document.getElementById("typeCode").textContent = `产品人格：${result.persona.code} · ${result.persona.title} · 综合准备度 ${readiness}`;
+      document.getElementById("typeCode").textContent = `可行性：${result.background.level} · 产品人格 ${result.persona.code}`;
+      document.getElementById("shareLabel").textContent = "一键分享";
+      document.getElementById("qrShareLabel").textContent = "分享二维码";
       document.getElementById("resultCopy").textContent = closeRace
         ? `你的前两项非常接近，建议用一个项目同时验证“${best.short}”和“${second.short}”。${best.summary}`
         : best.summary;
@@ -2164,7 +2051,7 @@
       renderRadar(result.dims);
       renderBars(result.dims);
       renderRanking(result.ranked);
-      renderPersona(result.persona);
+      renderPersona(result.persona, result, best);
       renderBackground(result.background, best, result.persona, result.selfChoice);
       renderKeywords(best, second);
 
@@ -2181,7 +2068,7 @@
         ...role.reasons
       ];
       if (result.background) {
-        reasons.push(`你的硬背景竞争力为 ${result.background.score} 分，属于“${result.background.level}”，建议把岗位选择和背景证据一起包装。`);
+        reasons.push(`你的 AI 产品可行性综合得分为 ${result.background.score} 分，属于“${result.background.level}”，建议把岗位选择和背景证据一起包装。`);
       }
       if (second) {
         reasons.push(`备选方向“${second.name}”只低 ${role.score - second.score} 分，说明你可以用同一个项目做双方向包装。`);
@@ -2189,7 +2076,7 @@
       if (lowDim[1] < 58) {
         reasons.push(`当前最需要补的是“${dimLabels[lowDim[0]]}”（${lowDim[1]} 分），建议在项目材料里主动补一份证据。`);
       }
-      return reasons.slice(0, 5);
+      return reasons.slice(0, 6);
     }
 
     function renderBars(dims) {
@@ -2249,6 +2136,49 @@
           <span>${role.summary}</span>
         </li>`;
       }).join("");
+    }
+
+    const axisInsights = {
+      E: { label: "外部推进", color: "orange", text: "习惯通过沟通、演示和反馈确认方向。" },
+      I: { label: "独立深潜", color: "blue", text: "习惯先建模和查证，再拿判断去验证。" },
+      N: { label: "机会探索", color: "violet", text: "关注新场景和新玩法，容易找到产品切口。" },
+      S: { label: "证据落地", color: "green", text: "重视流程、样本和标准，愿意把想法交付出来。" },
+      T: { label: "理性判断", color: "teal", text: "优先看指标、逻辑、边界和成本。" },
+      F: { label: "人群共情", color: "rose", text: "会把感受、动机和信任放进判断里。" },
+      J: { label: "收束执行", color: "green", text: "喜欢把任务收成计划、节点和验收标准。" },
+      P: { label: "开放迭代", color: "orange", text: "能接受边做边调，适合快速原型和实验。" }
+    };
+
+    function profileMark(text, color = "blue") {
+      return `<span class="profile-highlight ${color}">${escapeHtml(text)}</span>`;
+    }
+
+    function dimHighlight(dim) {
+      return profileMark(dimLabels[dim], dimColors[dim] || "blue");
+    }
+
+    function buildPersonaProfileHtml(persona, result, bestRole) {
+      const sortedDims = Object.entries(result.dims).sort((a, b) => b[1] - a[1]);
+      const topDim = sortedDims[0];
+      const lowDim = sortedDims[sortedDims.length - 1];
+      const axisText = persona.code.split("").map(letter => {
+        const insight = axisInsights[letter];
+        return `${profileMark(insight.label, insight.color)}：${escapeHtml(insight.text)}`;
+      }).join("；");
+      const baseProfile = escapeHtml(persona.profile || persona.description);
+      const roleName = profileMark(bestRole.name, "blue");
+      const personaName = profileMark(`${persona.code} · ${persona.title}`, "violet");
+      const topDimText = dimHighlight(topDim[0]);
+      const lowDimText = dimHighlight(lowDim[0]);
+
+      const paragraphs = [
+        `你的产品人格是 ${personaName}。${baseProfile} 这个标签不是心理学诊断，也不是给你盖章，而是把你在测评里表现出来的做事方式，翻译成更容易理解的产品求职画像：你更适合怎样发现问题、怎样做决策、怎样推进项目，以及在 AI 产品岗位里应该把什么能力当成主线去展示。`,
+        `从四个字母拆开看，${axisText}。合在一起，它不是简单的“外向/内向”标签，而是一套更具体的产品工作偏好：你会用自己舒服的方式建立秩序，再决定如何验证、推进和复盘。这也是为什么同样想做 AI 产品，有的人适合应用场景，有的人适合模型平台，有的人更适合运营、增长或解决方案切入。`,
+        `放到这次测评里，你当前最亮的能力信号是 ${topDimText}（${topDim[1]} 分）。系统主推你优先关注 ${roleName}，不是因为其他方向完全不行，而是这个方向更容易把你的能力、人格倾向和背景条件串成一个可讲述的故事。你可以围绕一个真实场景做项目：写清用户、痛点、AI 切入点、Demo、反馈和下一版改法，让面试官看到你已经做过一次产品验证。`,
+        `需要留意的是，你当前相对需要补的维度是 ${lowDimText}（${lowDim[1]} 分）。这不是说你不适合，而是提醒你在简历和项目复盘里主动补证据。泛娱乐一点说，${escapeHtml(persona.notes[1]?.[1] || persona.description)} 但求职不能只靠人格魅力通关。更聪明的打法是保留个人风格，同时准备项目地图、关键指标、用户反馈和复盘结论，让“我像什么类型的人”最终落到“我能交付什么结果”。`
+      ];
+
+      return paragraphs.map(paragraph => `<p>${paragraph}</p>`).join("");
     }
 
     function avatarHair(style, color) {
@@ -2329,13 +2259,13 @@
       </svg>`;
     }
 
-    function renderPersona(persona) {
+    function renderPersona(persona, result, bestRole) {
       document.getElementById("resultCharacter").innerHTML = createPersonaAvatar(persona);
       document.getElementById("personaAvatar").innerHTML = createPersonaAvatar(persona);
       document.getElementById("personaCode").textContent = persona.code;
       document.getElementById("personaTitle").textContent = persona.title;
       document.getElementById("personaSubtitle").textContent = persona.subtitle;
-      document.getElementById("personaDescription").textContent = persona.description;
+      document.getElementById("personaDescription").innerHTML = buildPersonaProfileHtml(persona, result, bestRole);
       document.getElementById("personaList").innerHTML = persona.notes.map(([title, text]) => {
         return `<li><strong>${title}</strong><span>${text}</span></li>`;
       }).join("");
@@ -2343,6 +2273,8 @@
 
     function renderBackground(background, bestRole, persona, selfChoice) {
       document.getElementById("backgroundScore").textContent = background.score;
+      document.getElementById("backgroundBaseScore").textContent = background.baseScore;
+      document.getElementById("preparationScore").textContent = background.preparationScore;
       document.getElementById("backgroundLevel").textContent = background.level;
       document.getElementById("backgroundSubtitle").textContent = background.subtitle;
       document.getElementById("backgroundSummary").textContent = background.summary;
@@ -2357,7 +2289,7 @@
         ["对照建议", buildChoiceAdvice(selfChoice, bestRole, background.score)]
       ];
       document.getElementById("fitList").innerHTML = fitItems.map(([title, text]) => {
-        return `<li><strong>${title}</strong><span>${text}</span></li>`;
+        return `<li><strong>${escapeHtml(title)}</strong><span>${escapeHtml(text)}</span></li>`;
       }).join("");
     }
 
@@ -2395,26 +2327,336 @@
       }).join("");
     }
 
-    function copyResult() {
-      const role = document.getElementById("bestRole").textContent;
-      const score = document.getElementById("matchScore").textContent;
-      const code = document.getElementById("typeCode").textContent;
-      const background = document.getElementById("backgroundScore").textContent;
-      const selfChoice = Array.from(document.querySelectorAll("#fitList li")).find(item => item.textContent.includes("你的选择"))?.querySelector("span")?.textContent || "";
-      const text = `我的 AI 产品方向测评结果：${role}，岗位匹配分 ${score}，背景竞争力 ${background}，${code}。我自己的选择：${selfChoice}`;
+    async function shareResult() {
+      const personaCode = document.getElementById("personaCode").textContent;
+      const personaTitle = document.getElementById("personaTitle").textContent;
+      const shareUrl = ASSESSMENT_URL;
+      const shareText = `我的产品人格是${personaCode}「${personaTitle}」，快来测测你的吧`;
+      const shareData = {
+        title: "AI 产品方向测评",
+        text: shareText,
+        url: shareUrl
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+          return;
+        } catch (error) {
+          if (error && error.name === "AbortError") {
+            return;
+          }
+        }
+      }
+
+      const fallbackText = `${shareText} ${shareUrl}`;
       if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(text).then(() => {
-          document.getElementById("copyBtn").lastChild.textContent = " 已复制";
-        });
+        await navigator.clipboard.writeText(fallbackText);
       } else {
         const textarea = document.createElement("textarea");
-        textarea.value = text;
+        textarea.value = fallbackText;
         document.body.appendChild(textarea);
         textarea.select();
         document.execCommand("copy");
         textarea.remove();
-        document.getElementById("copyBtn").lastChild.textContent = " 已复制";
       }
+      document.getElementById("shareLabel").textContent = "已复制分享文案";
+    }
+
+    function makeQrMatrix(text) {
+      const version = 3;
+      const size = 21 + (version - 1) * 4;
+      const dataCodewords = 44;
+      const eccCodewords = 26;
+      const encoder = new TextEncoder();
+      const bytes = [...encoder.encode(text)];
+
+      if (bytes.length > 42) {
+        throw new Error("QR content is too long for this compact generator.");
+      }
+
+      const bits = [];
+      const pushBits = (value, length) => {
+        for (let i = length - 1; i >= 0; i -= 1) {
+          bits.push((value >> i) & 1);
+        }
+      };
+
+      pushBits(4, 4);
+      pushBits(bytes.length, 8);
+      bytes.forEach(byte => pushBits(byte, 8));
+      const maxBits = dataCodewords * 8;
+      for (let i = 0; i < 4 && bits.length < maxBits; i += 1) bits.push(0);
+      while (bits.length % 8) bits.push(0);
+
+      const data = [];
+      for (let i = 0; i < bits.length; i += 8) {
+        data.push(bits.slice(i, i + 8).reduce((sum, bit) => (sum << 1) | bit, 0));
+      }
+      for (let pad = 0; data.length < dataCodewords; pad += 1) {
+        data.push(pad % 2 ? 0x11 : 0xec);
+      }
+
+      const exp = new Array(512);
+      const log = new Array(256);
+      let value = 1;
+      for (let i = 0; i < 255; i += 1) {
+        exp[i] = value;
+        log[value] = i;
+        value <<= 1;
+        if (value & 0x100) value ^= 0x11d;
+      }
+      for (let i = 255; i < 512; i += 1) exp[i] = exp[i - 255];
+      const gfMul = (a, b) => (a && b ? exp[log[a] + log[b]] : 0);
+      let generator = [1];
+      for (let i = 0; i < eccCodewords; i += 1) {
+        const next = new Array(generator.length + 1).fill(0);
+        generator.forEach((coefficient, index) => {
+          next[index] ^= coefficient;
+          next[index + 1] ^= gfMul(coefficient, exp[i]);
+        });
+        generator = next;
+      }
+
+      const ecc = new Array(eccCodewords).fill(0);
+      data.forEach(byte => {
+        const factor = byte ^ ecc.shift();
+        ecc.push(0);
+        for (let i = 0; i < eccCodewords; i += 1) {
+          ecc[i] ^= gfMul(generator[i + 1], factor);
+        }
+      });
+      const codewords = [...data, ...ecc];
+
+      const base = Array.from({ length: size }, () => new Array(size).fill(false));
+      const reserved = Array.from({ length: size }, () => new Array(size).fill(false));
+      const setFunction = (row, col, dark) => {
+        if (row < 0 || row >= size || col < 0 || col >= size) return;
+        base[row][col] = dark;
+        reserved[row][col] = true;
+      };
+
+      const addFinder = (row, col) => {
+        for (let dr = -1; dr <= 7; dr += 1) {
+          for (let dc = -1; dc <= 7; dc += 1) {
+            const r = row + dr;
+            const c = col + dc;
+            const inFinder = dr >= 0 && dr <= 6 && dc >= 0 && dc <= 6;
+            const dark = inFinder && (dr === 0 || dr === 6 || dc === 0 || dc === 6 || (dr >= 2 && dr <= 4 && dc >= 2 && dc <= 4));
+            setFunction(r, c, dark);
+          }
+        }
+      };
+
+      addFinder(0, 0);
+      addFinder(0, size - 7);
+      addFinder(size - 7, 0);
+
+      for (let i = 0; i < size; i += 1) {
+        if (!reserved[6][i]) setFunction(6, i, i % 2 === 0);
+        if (!reserved[i][6]) setFunction(i, 6, i % 2 === 0);
+      }
+
+      for (let dr = -2; dr <= 2; dr += 1) {
+        for (let dc = -2; dc <= 2; dc += 1) {
+          const distance = Math.max(Math.abs(dr), Math.abs(dc));
+          setFunction(22 + dr, 22 + dc, distance === 2 || distance === 0);
+        }
+      }
+
+      for (let i = 0; i < 9; i += 1) {
+        setFunction(8, i, false);
+        setFunction(i, 8, false);
+      }
+      for (let i = 0; i < 8; i += 1) {
+        setFunction(8, size - 1 - i, false);
+      }
+      for (let i = 0; i < 7; i += 1) {
+        setFunction(size - 1 - i, 8, false);
+      }
+      setFunction(size - 8, 8, true);
+
+      const dataBits = codewords.flatMap(codeword => {
+        const wordBits = [];
+        for (let i = 7; i >= 0; i -= 1) wordBits.push((codeword >> i) & 1);
+        return wordBits;
+      });
+
+      let bitIndex = 0;
+      let direction = -1;
+      for (let col = size - 1; col > 0; col -= 2) {
+        if (col === 6) col -= 1;
+        for (let i = 0; i < size; i += 1) {
+          const row = direction === -1 ? size - 1 - i : i;
+          for (let c = col; c >= col - 1; c -= 1) {
+            if (!reserved[row][c]) {
+              base[row][c] = bitIndex < dataBits.length ? dataBits[bitIndex] === 1 : false;
+              bitIndex += 1;
+            }
+          }
+        }
+        direction *= -1;
+      }
+
+      const maskBit = (mask, row, col) => {
+        if (mask === 0) return (row + col) % 2 === 0;
+        if (mask === 1) return row % 2 === 0;
+        if (mask === 2) return col % 3 === 0;
+        if (mask === 3) return (row + col) % 3 === 0;
+        if (mask === 4) return (Math.floor(row / 2) + Math.floor(col / 3)) % 2 === 0;
+        if (mask === 5) return ((row * col) % 2) + ((row * col) % 3) === 0;
+        if (mask === 6) return (((row * col) % 2) + ((row * col) % 3)) % 2 === 0;
+        return (((row + col) % 2) + ((row * col) % 3)) % 2 === 0;
+      };
+
+      const formatBits = mask => {
+        let dataValue = mask;
+        let remainder = dataValue << 10;
+        const generatorBits = 0x537;
+        for (let i = 14; i >= 10; i -= 1) {
+          if ((remainder >> i) & 1) remainder ^= generatorBits << (i - 10);
+        }
+        return ((dataValue << 10) | remainder) ^ 0x5412;
+      };
+
+      const placeFormat = (matrix, mask) => {
+        const bitsValue = formatBits(mask);
+        for (let i = 0; i < 15; i += 1) {
+          const dark = ((bitsValue >> i) & 1) === 1;
+          if (i < 6) matrix[i][8] = dark;
+          else if (i < 8) matrix[i + 1][8] = dark;
+          else matrix[size - 15 + i][8] = dark;
+
+          if (i < 8) matrix[8][size - i - 1] = dark;
+          else if (i < 9) matrix[8][15 - i] = dark;
+          else matrix[8][14 - i] = dark;
+        }
+        matrix[size - 8][8] = true;
+      };
+
+      const scoreMatrix = matrix => {
+        let score = 0;
+        const countRun = line => {
+          let runColor = line[0];
+          let runLength = 1;
+          for (let i = 1; i <= line.length; i += 1) {
+            if (i < line.length && line[i] === runColor) {
+              runLength += 1;
+            } else {
+              if (runLength >= 5) score += 3 + runLength - 5;
+              runColor = line[i];
+              runLength = 1;
+            }
+          }
+        };
+
+        for (let row = 0; row < size; row += 1) countRun(matrix[row]);
+        for (let col = 0; col < size; col += 1) countRun(matrix.map(row => row[col]));
+        for (let row = 0; row < size - 1; row += 1) {
+          for (let col = 0; col < size - 1; col += 1) {
+            const color = matrix[row][col];
+            if (matrix[row + 1][col] === color && matrix[row][col + 1] === color && matrix[row + 1][col + 1] === color) score += 3;
+          }
+        }
+
+        const badPatterns = ["10111010000", "00001011101"];
+        for (let row = 0; row < size; row += 1) {
+          const line = matrix[row].map(Boolean).map(bit => (bit ? "1" : "0")).join("");
+          badPatterns.forEach(pattern => {
+            let index = line.indexOf(pattern);
+            while (index !== -1) {
+              score += 40;
+              index = line.indexOf(pattern, index + 1);
+            }
+          });
+        }
+        for (let col = 0; col < size; col += 1) {
+          const line = matrix.map(row => (row[col] ? "1" : "0")).join("");
+          badPatterns.forEach(pattern => {
+            let index = line.indexOf(pattern);
+            while (index !== -1) {
+              score += 40;
+              index = line.indexOf(pattern, index + 1);
+            }
+          });
+        }
+
+        const darkCount = matrix.flat().filter(Boolean).length;
+        score += Math.floor(Math.abs((darkCount * 100) / (size * size) - 50) / 5) * 10;
+        return score;
+      };
+
+      let bestMatrix = null;
+      let bestScore = Infinity;
+      for (let mask = 0; mask < 8; mask += 1) {
+        const matrix = base.map(row => row.slice());
+        for (let row = 0; row < size; row += 1) {
+          for (let col = 0; col < size; col += 1) {
+            if (!reserved[row][col] && maskBit(mask, row, col)) {
+              matrix[row][col] = !matrix[row][col];
+            }
+          }
+        }
+        placeFormat(matrix, mask);
+        const score = scoreMatrix(matrix);
+        if (score < bestScore) {
+          bestScore = score;
+          bestMatrix = matrix;
+        }
+      }
+      return bestMatrix;
+    }
+
+    function drawQrCanvas(url) {
+      const matrix = makeQrMatrix(url);
+      const margin = 4;
+      const scale = 12;
+      const size = (matrix.length + margin * 2) * scale;
+      const canvas = document.createElement("canvas");
+      canvas.width = size;
+      canvas.height = size;
+      const context = canvas.getContext("2d");
+      context.fillStyle = "#ffffff";
+      context.fillRect(0, 0, size, size);
+      context.fillStyle = "#19212a";
+      matrix.forEach((row, y) => {
+        row.forEach((dark, x) => {
+          if (dark) {
+            context.fillRect((x + margin) * scale, (y + margin) * scale, scale, scale);
+          }
+        });
+      });
+      return canvas;
+    }
+
+    function canvasToBlob(canvas) {
+      return new Promise(resolve => canvas.toBlob(resolve, "image/png"));
+    }
+
+    async function shareQrCode() {
+      const label = document.getElementById("qrShareLabel");
+      const canvas = drawQrCanvas(ASSESSMENT_URL);
+      const blob = await canvasToBlob(canvas);
+
+      if (navigator.clipboard && window.ClipboardItem && window.isSecureContext && blob) {
+        try {
+          await navigator.clipboard.write([
+            new ClipboardItem({ "image/png": blob })
+          ]);
+          label.textContent = "二维码已复制";
+          return;
+        } catch (error) {
+          // Fall back to a download when the browser blocks image clipboard writes.
+        }
+      }
+
+      const link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png");
+      link.download = "AI产品方向测评二维码.png";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      label.textContent = "已下载二维码";
     }
 
     form.addEventListener("change", updateProgress);
@@ -2442,11 +2684,8 @@
       document.getElementById("assessment").scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
-    document.getElementById("editBtn").addEventListener("click", () => {
-      document.getElementById("assessment").scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-
-    document.getElementById("copyBtn").addEventListener("click", copyResult);
+    document.getElementById("copyBtn").addEventListener("click", shareResult);
+    document.getElementById("qrShareBtn").addEventListener("click", shareQrCode);
 
     renderQuestions();
     updateProgress();
