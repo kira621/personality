@@ -1092,7 +1092,7 @@
             </div>
             <div class="rule-box">
               <h3>背景竞争力</h3>
-              <p>学历、学校、专业、实习、AI 项目和材料完整度会形成 0-100 分背景分。它用于判断求职敲门砖强弱，不直接否定岗位兴趣匹配。</p>
+              <p>学历、学校、专业、实习、AI 项目和材料完整度会形成 0-100 分背景分。91 分及以上强匹配，81-90 可冲刺，70-80 可尝试，60-69 建议先补实习和项目，60 分以下可先考虑 AI 运营岗位。</p>
             </div>
             <div class="rule-box">
               <h3>自选方向</h3>
@@ -1348,9 +1348,9 @@
         tags: ["硬背景", "学历"],
         options: [
           { label: "硕士/博士", value: "grad", score: 90 },
-          { label: "本科", value: "bachelor", score: 75 },
-          { label: "专科", value: "junior", score: 48 },
-          { label: "其他/暂不确定", value: "other", score: 35 }
+          { label: "本科", value: "bachelor", score: 60 },
+          { label: "专科及以下", value: "junior", score: 10 },
+          { label: "其他/暂不确定", value: "other", score: 10 }
         ]
       },
       {
@@ -1359,10 +1359,10 @@
         text: "你的学校背景更接近哪一类？",
         tags: ["硬背景", "学校"],
         options: [
-          { label: "985/C9/头部海外院校", value: "top", score: 95 },
-          { label: "211/双一流/较好海外院校", value: "strong", score: 85 },
-          { label: "普通本科/普通海外院校", value: "normal", score: 65 },
-          { label: "专科/民办/独立学院", value: "basic", score: 45 }
+          { label: "985/海外 QS 前 50 院校", value: "top", score: 90 },
+          { label: "211/双一流/QS 51-200 海外院校", value: "strong", score: 80 },
+          { label: "普通本科/普通海外院校", value: "normal", score: 60 },
+          { label: "专科/民办/独立学院", value: "basic", score: 25 }
         ]
       },
       {
@@ -1371,10 +1371,10 @@
         text: "你的专业与 AI 产品岗位的相关度如何？",
         tags: ["硬背景", "专业"],
         options: [
-          { label: "计算机/AI/数据/软件等强相关", value: "tech_major", score: 92 },
-          { label: "工科/数理/统计/交互设计等较相关", value: "related_major", score: 78 },
-          { label: "商科/传媒/心理/管理等可迁移", value: "transfer_major", score: 66 },
-          { label: "暂时看不出明显相关", value: "weak_major", score: 48 }
+          { label: "计算机/AI/数据/软件等强相关", value: "tech_major", score: 90 },
+          { label: "工科/数理/统计/交互设计等较相关", value: "related_major", score: 70 },
+          { label: "商科/传媒/心理/管理等可迁移", value: "transfer_major", score: 45 },
+          { label: "暂时看不出明显相关", value: "weak_major", score: 10 }
         ]
       },
       {
@@ -1383,10 +1383,10 @@
         text: "你目前有几段正式实习经历？",
         tags: ["硬背景", "实习"],
         options: [
-          { label: "3 段及以上", value: "three_plus", score: 92 },
-          { label: "2 段", value: "two", score: 78 },
-          { label: "1 段", value: "one", score: 58 },
-          { label: "暂无正式实习", value: "none", score: 30 }
+          { label: "3 段及以上", value: "three_plus", score: 85 },
+          { label: "2 段", value: "two", score: 70 },
+          { label: "1 段", value: "one", score: 60 },
+          { label: "暂无正式实习", value: "none", score: 20 }
         ]
       },
       {
@@ -1395,10 +1395,10 @@
         text: "你是否有产品、运营、数据、用户研究或项目推进相关实习？",
         tags: ["硬背景", "岗位相关"],
         options: [
-          { label: "有 AI 产品/产品经理相关实习", value: "ai_pm", score: 96 },
-          { label: "有产品/运营/数据/用研相关实习", value: "related", score: 82 },
-          { label: "有互联网/科技公司其他岗位实习", value: "tech_other", score: 62 },
-          { label: "暂无相关实习", value: "none", score: 35 }
+          { label: "有 AI 产品/产品经理相关实习", value: "ai_pm", score: 85 },
+          { label: "有产品/运营/数据/用研相关实习", value: "related", score: 75 },
+          { label: "有互联网/科技公司其他岗位实习", value: "tech_other", score: 55 },
+          { label: "暂无相关实习", value: "none", score: 20 }
         ]
       },
       {
@@ -1407,8 +1407,8 @@
         text: "你是否有大厂、知名 AI 公司或高成长创业公司的实习/项目经历？",
         tags: ["硬背景", "平台"],
         options: [
-          { label: "有大厂/头部 AI 公司实习", value: "big_factory", score: 96 },
-          { label: "有知名互联网/高成长创业公司经历", value: "known_company", score: 82 },
+          { label: "有大厂/头部 AI 公司实习", value: "big_factory", score: 90 },
+          { label: "有知名互联网/高成长创业公司经历", value: "known_company", score: 85 },
           { label: "有中小公司或校企项目经历", value: "small_company", score: 58 },
           { label: "暂无公司/项目平台背书", value: "none", score: 35 }
         ]
@@ -1419,9 +1419,9 @@
         text: "你现在是否有能展示的 AI 项目、论文、竞赛或作品？",
         tags: ["硬背景", "作品"],
         options: [
-          { label: "有可演示 AI 项目/上线作品", value: "demo", score: 95 },
+          { label: "有可演示 AI 项目/上线作品", value: "demo", score: 85 },
           { label: "有 AI 论文/竞赛/课程项目", value: "paper_competition", score: 78 },
-          { label: "有普通产品/数据/运营项目", value: "normal_project", score: 62 },
+          { label: "有普通产品/数据/运营项目", value: "normal_project", score: 60 },
           { label: "暂无可展示作品", value: "none", score: 30 }
         ]
       },
@@ -1431,9 +1431,9 @@
         text: "你的求职材料准备到什么程度？",
         tags: ["硬背景", "材料"],
         options: [
-          { label: "有目标 JD、简历、项目文档和复盘", value: "complete", score: 92 },
-          { label: "有简历和项目，但还没对齐 JD", value: "partial", score: 72 },
-          { label: "只有简历，项目证据较少", value: "resume_only", score: 52 },
+          { label: "有目标 JD、简历、项目文档和复盘", value: "complete", score: 85 },
+          { label: "有简历和项目，但还没对齐 JD", value: "partial", score: 70 },
+          { label: "只有简历，项目证据较少", value: "resume_only", score: 50 },
           { label: "还没开始系统准备", value: "not_ready", score: 28 }
         ]
       },
@@ -1888,13 +1888,15 @@
         } else if (question.type === "single") {
           const selected = question.options.find(option => option.value === answer);
           if (selected) {
+            const maxOptionScore = Math.max(...question.options.map(option => option.score));
             backgroundRaw += selected.score;
-            backgroundMax += 100;
+            backgroundMax += maxOptionScore;
             backgroundAnswers.push({
               id: question.id,
               text: question.text,
               label: selected.label,
-              score: selected.score
+              score: selected.score,
+              maxScore: maxOptionScore
             });
           }
         } else if (question.type === "text") {
@@ -1979,24 +1981,29 @@
 
     function buildBackground(raw, max, answers) {
       const score = max ? Math.round((raw / max) * 100) : 0;
-      const sorted = [...answers].sort((a, b) => a.score - b.score);
+      const ratio = item => item.maxScore ? item.score / item.maxScore : 0;
+      const sorted = [...answers].sort((a, b) => ratio(a) - ratio(b));
       const weak = sorted.slice(0, 2);
-      const strong = [...answers].sort((a, b) => b.score - a.score).slice(0, 2);
-      let level = "先补证据";
-      let summary = "当前硬背景对直接冲 AI 产品岗的支撑偏弱，建议先用 AI 项目、相关实习或产品运营/数据岗位切入。";
-      let subtitle = "背景分偏低，重点补可见证据";
-      if (score >= 85) {
-        level = "强背景，可直接冲刺";
-        subtitle = "适合直接冲 AI 产品/平台/解决方案岗位";
-        summary = "你的学历、学校、实习或作品背书较强，适合直接把目标 JD、AI 项目和岗位关键词对齐，冲刺 AI 产品相关岗位。";
-      } else if (score >= 70) {
+      const strong = [...answers].sort((a, b) => ratio(b) - ratio(a)).slice(0, 2);
+      let level = "AI 产品可行性不高";
+      let summary = "当前硬背景对直接冲 AI 产品岗的支撑偏弱，建议先考虑 AI 运营、项目运营、内容运营等入口，再用项目和实习补足产品证据。";
+      let subtitle = "可考虑转 AI 运营岗位";
+      if (score >= 91) {
+        level = "强匹配，准备好面试";
+        subtitle = "可直接冲 AI 产品相关岗位";
+        summary = "你的学历、学校、实习、平台或作品背书已经形成强匹配，适合直接对齐目标 JD，准备面试并冲刺 AI 产品相关岗位。";
+      } else if (score >= 81) {
         level = "可冲刺，材料决定上限";
-        subtitle = "适合冲 AI 产品，也要补项目表达";
-        summary = "你的硬背景已经具备一定竞争力，但最终能否过筛很看项目质量、简历关键词和面试表达。";
-      } else if (score >= 55) {
-        level = "可切入，先补强证据";
-        subtitle = "适合相关产品/运营/数据方向切入";
-        summary = "你的背景不算差，但直接冲 AI 产品岗可能需要更强证据。建议用 AI 项目、相关实习或作品集补足门槛。";
+        subtitle = "材料质量会明显影响上限";
+        summary = "你的硬背景具备冲刺 AI 产品岗位的基础，但能否过筛和拿到更好机会，很看项目包装、简历关键词和面试表达。";
+      } else if (score >= 70) {
+        level = "可尝试，有机会";
+        subtitle = "大厂机会偏低，建议曲线救国";
+        summary = "你可以尝试 AI 产品相关岗位，但大厂直接机会偏低。建议通过竞赛、中厂垂类实习、AI 项目或垂直行业场景补强履历。";
+      } else if (score >= 60) {
+        level = "几率偏低，先补实习和项目";
+        subtitle = "先补相关实习和可展示项目";
+        summary = "直接冲 AI 产品岗的成功率偏低，建议优先补产品/运营/数据相关实习、AI 项目作品和岗位关键词证据。";
       }
       const notes = [
         ["优势信号", strong.map(item => `${item.label}`).join("；") || "暂无明显高分项"],
