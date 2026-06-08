@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI 产品方向测评</title>
-  <meta name="description" content="测出你的 AI 产品方向、产品人格和岗位可行性。">
-  <meta property="og:title" content="AI 产品方向测评">
-  <meta property="og:description" content="我的产品人格是XXXX，快来测测你的吧">
+  <title>测试你的职场人格</title>
+  <meta name="description" content="测试你的职场人格、AI 产品可行性和适合的 AI 岗位方向。">
+  <meta property="og:title" content="测试你的职场人格">
+  <meta property="og:description" content="我的职场人格是XXXX，快来测测你的吧">
   <style>
     :root {
       --ink: #19212a;
@@ -21,6 +21,12 @@
       --violet: #6d5bd0;
       --green: #2e9d66;
       --gold: #b7791f;
+      --feasibility: #0f9f8f;
+      --feasibility-soft: #edf9f7;
+      --persona: #6d5bd0;
+      --persona-soft: #f3f1ff;
+      --advice: #b7791f;
+      --advice-soft: #fff7e6;
       --shadow: 0 18px 50px rgba(29, 41, 57, 0.12);
       --radius: 8px;
     }
@@ -139,8 +145,9 @@
     .hero-main {
       padding: 24px 28px;
       display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 16px;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 24px;
+      align-items: center;
       overflow: hidden;
       position: relative;
     }
@@ -157,6 +164,61 @@
       position: relative;
       z-index: 1;
       min-width: 0;
+    }
+
+    .hero-visual {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-persona-card {
+      width: min(100%, 236px);
+      border: 1px solid rgba(216, 222, 232, 0.95);
+      border-radius: 8px;
+      padding: 12px;
+      background: linear-gradient(145deg, #fff, #f7fbff);
+      box-shadow: 0 18px 34px rgba(29, 41, 57, 0.1);
+    }
+
+    .hero-avatar {
+      aspect-ratio: 1;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .hero-avatar svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .hero-persona-caption {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 8px;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .hero-persona-caption strong {
+      border-radius: 8px;
+      padding: 7px 9px;
+      color: #fff;
+      background: var(--persona);
+      font-size: 18px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .hero-persona-caption span {
+      color: #344054;
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.3;
     }
 
     h1 {
@@ -560,6 +622,16 @@
       background: #fff;
     }
 
+    .score-chip.base {
+      border-color: rgba(15, 159, 143, 0.24);
+      background: var(--feasibility-soft);
+    }
+
+    .score-chip.prep {
+      border-color: rgba(183, 121, 31, 0.24);
+      background: var(--advice-soft);
+    }
+
     .score-chip strong {
       display: block;
       color: var(--ink);
@@ -576,15 +648,30 @@
     }
 
     .type-code {
-      display: inline-flex;
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 8px;
       margin: 12px 0 0;
+    }
+
+    .type-pill {
+      display: inline-flex;
+      align-items: center;
       border-radius: 8px;
       padding: 9px 11px;
       color: #1f2937;
-      background: #eef7f6;
       font-weight: 900;
+    }
+
+    .type-pill.feasibility {
+      color: #0b6f67;
+      background: var(--feasibility-soft);
+    }
+
+    .type-pill.persona {
+      color: #5748ad;
+      background: var(--persona-soft);
     }
 
     .persona-card {
@@ -702,6 +789,46 @@
       background: rgba(46, 157, 102, 0.1);
     }
 
+    .background-detail {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+      color: #344054;
+      font-size: 16px;
+      line-height: 1.78;
+    }
+
+    .background-detail p {
+      margin: 0;
+    }
+
+    .feasibility-mark {
+      display: inline;
+      border-radius: 6px;
+      padding: 0 5px;
+      font-weight: 950;
+    }
+
+    .feasibility-mark.conclusion {
+      color: #0b6f67;
+      background: var(--feasibility-soft);
+    }
+
+    .feasibility-mark.background {
+      color: #175cd3;
+      background: rgba(49, 87, 213, 0.09);
+    }
+
+    .feasibility-mark.preparation {
+      color: #9a6517;
+      background: var(--advice-soft);
+    }
+
+    .feasibility-mark.action {
+      color: #5748ad;
+      background: var(--persona-soft);
+    }
+
     .reason-list {
       display: grid;
       gap: 10px;
@@ -716,6 +843,26 @@
       background: #f2fbfa;
       border-radius: 0 8px 8px 0;
       color: #344054;
+    }
+
+    .reason-list li.reason-role {
+      border-left-color: var(--blue);
+      background: rgba(49, 87, 213, 0.07);
+    }
+
+    .reason-list li.reason-persona {
+      border-left-color: var(--persona);
+      background: var(--persona-soft);
+    }
+
+    .reason-list li.reason-feasibility {
+      border-left-color: var(--feasibility);
+      background: var(--feasibility-soft);
+    }
+
+    .reason-list li.reason-warning {
+      border-left-color: var(--advice);
+      background: var(--advice-soft);
     }
 
     .bars {
@@ -932,7 +1079,7 @@
           </svg>
         </div>
         <div class="brand-text">
-          <div class="brand-title">AI 产品求职方向测评</div>
+          <div class="brand-title">职场人格与 AI 岗位测评</div>
           <div class="brand-subtitle">产品岗认知 · 项目选题 · 求职定位</div>
         </div>
       </div>
@@ -947,8 +1094,8 @@
     <section class="hero" aria-labelledby="heroTitle">
       <div class="hero-main">
         <div class="hero-copy">
-          <h1 id="heroTitle">测出你更适合的 AI 产品方向</h1>
-          <p class="lead">面向还没毕业、准备做 AI 产品项目和求职定位的同学。结果会先给出 AI 产品可行性，再给出岗位方向、综合匹配分、产品人格和你自己的选择。</p>
+          <h1 id="heroTitle">测试你的职场人格</h1>
+          <p class="lead">面向未毕业、想转行、想尝试做AI相关岗位、不明确自己适合什么AI岗位的同学。结果会先给出 AI 产品可行性，再给出岗位方向、综合匹配分、职场人格和你自己的选择。</p>
           <div class="hero-actions">
             <a class="button" href="#assessment">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -956,6 +1103,22 @@
               </svg>
               开始测评
             </a>
+            <button class="button secondary" type="button" id="qrShareBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M14 14h2v2h-2zM18 14h2v4h-2zM14 18h4v2h-4z" fill="currentColor"/>
+              </svg>
+              <span id="qrShareLabel">分享二维码</span>
+            </button>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="默认职场人格示例">
+          <div class="hero-persona-card">
+            <div class="hero-avatar" id="heroAvatar" aria-hidden="true"></div>
+            <div class="hero-persona-caption">
+              <strong>INTP</strong>
+              <span>模型拆解师</span>
+            </div>
           </div>
         </div>
       </div>
@@ -999,7 +1162,7 @@
       <div class="section-title">
         <div>
           <h2 id="resultTitle">测评结果</h2>
-          <p>先看主推岗位，再看产品人格、五维能力、AI 产品可行性和岗位排序。</p>
+          <p>先看主推岗位，再看职场人格、五维能力、AI 产品可行性和岗位排序。</p>
         </div>
       </div>
       <div class="result-stack">
@@ -1026,19 +1189,12 @@
               </svg>
               <span id="shareLabel">一键分享</span>
             </button>
-            <button class="button secondary" type="button" id="qrShareBtn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                <path d="M14 14h2v2h-2zM18 14h2v4h-2zM14 18h4v2h-4z" fill="currentColor"/>
-              </svg>
-              <span id="qrShareLabel">分享二维码</span>
-            </button>
           </div>
         </div>
 
         <div class="result-grid">
           <div class="panel">
-            <p class="mini-title">产品人格角色</p>
+            <p class="mini-title">职场人格角色</p>
             <div class="persona-card character-card">
               <div class="persona-avatar" id="personaAvatar" aria-hidden="true"></div>
               <div class="persona-code" id="personaCode">INTJ</div>
@@ -1077,13 +1233,13 @@
               <span class="persona-subtitle" id="backgroundSubtitle">背景底盘 80% + 准备工作 20%</span>
             </div>
           </div>
-          <p class="result-copy" id="backgroundSummary"></p>
+          <div class="background-detail" id="backgroundSummary"></div>
           <div class="score-explain" aria-label="可行性分数构成">
-            <div class="score-chip">
+            <div class="score-chip base">
               <strong id="backgroundBaseScore">0</strong>
               <span>背景底盘分 · 权重 80%</span>
             </div>
-            <div class="score-chip">
+            <div class="score-chip prep">
               <strong id="preparationScore">0</strong>
               <span>准备工作分 · 权重 20%</span>
             </div>
@@ -1551,19 +1707,19 @@
 
     const personaProfiles = {
       INTJ: "你像产品世界里的系统制图师，先不急着冲进人群，而是会把赛道、能力边界、用户路径和指标关系摆成一张看得懂的地图。你的优势不是“灵感爆发”，而是能把模糊方向拆成假设、模块、优先级和迭代路线。做 AI 产品时，你会天然关注模型能力边界、长期壁垒、数据闭环和产品结构是否可扩展。适合平台、模型、评测、策略型应用产品。需要提醒的是，别只在脑内把方案推演到完美，校招更看证据，最好尽快做出一个能演示、能复盘、能被追问的项目。",
-      ENTJ: "你像项目里自带进度条的战役指挥官，看到一个目标，会自然开始拆资源、排节奏、找负责人和定义胜利标准。你的产品人格更偏外部推进型，适合有明确指标、复杂协作和 deadline 的方向。AI 产品里，解决方案、增长商业化、产品运营推进都很吃这种气质：既要把话讲清，也要把事推完。你的吸引力在于能让团队相信“这事可以做成”。但要注意，AI 产品不是只靠气势推进，模型效果、数据证据和用户反馈要跟上，否则容易把不成熟的方案推进得太快。",
+      ENTJ: "你像项目里自带进度条的战役指挥官，看到一个目标，会自然开始拆资源、排节奏、找负责人和定义胜利标准。你的职场人格更偏外部推进型，适合有明确指标、复杂协作和 deadline 的方向。AI 产品里，解决方案、增长商业化、产品运营推进都很吃这种气质：既要把话讲清，也要把事推完。你的吸引力在于能让团队相信“这事可以做成”。但要注意，AI 产品不是只靠气势推进，模型效果、数据证据和用户反馈要跟上，否则容易把不成熟的方案推进得太快。",
       INTP: "你像把 AI 产品拆开研究的模型拆解师，别人问“好不好用”，你会继续追问：数据从哪来、Prompt 怎么写、模型为什么不稳定、指标怎么定义。你的优势是分析耐心和抽象能力，适合模型平台、数据评测、开发者工具、知识库/RAG 等需要理解系统原理的方向。你不一定最爱做热闹汇报，但能在复杂问题里找到真正的变量。求职时要避免只展示思考过程，最好把实验设计、bad case 归因、指标变化和改进动作做成清楚材料，让面试官看到你的分析确实能推动产品变好。",
       ENTP: "你像 AI 产品里的玩法实验家，脑内经常同时跑着几个新点子：这个能不能做成 Agent，那个能不能变成内容工具，另一个是不是可以拿来做增长实验。你的强项是发现新机会、快速启动和用原型验证方向，适合 AI 应用产品、泛娱乐工具、创作工具和创新项目。你会让测评结果看起来很有生命力，因为你真的愿意试。短板也很典型：想法多时容易分散。建议把最兴奋的想法压缩成一个 7 天可验证项目，用 Demo、用户反馈和指标记录把“好玩”变成“靠谱”。",
-      INFJ: "你像场景深处的洞察师，能从一句用户抱怨里听出真实处境、情绪压力和未被表达的需求。你的产品人格适合从人群、场景和长期价值出发，尤其适合 AI 应用、教育、咨询、陪伴、知识服务等需要理解用户心理的方向。你的优势不是把功能堆满，而是能解释为什么这个功能会让人愿意用。求职时要把这份细腻变成可被验证的证据：访谈记录、用户旅程、痛点分级、方案取舍和反馈复盘。这样你的共情不会停留在“感觉”，而会成为产品判断依据。",
-      ENFJ: "你像项目里的共创推动者，擅长把不同角色拉到同一张桌子上：用户愿意讲，业务愿意配合，团队也知道下一步怎么做。你的产品人格很适合行业解决方案、ToB 项目推进、产品运营和客户共创型岗位。AI 产品落地常常不是一个功能问题，而是业务流程、数据条件、组织信任和培训使用的问题，你的沟通与组织能力会很有价值。需要注意的是，别只做“气氛很好”的协调者，要把每次沟通沉淀成需求、约束、风险和决策记录，证明你能推动产品而不是只推动关系。",
+      INFJ: "你像场景深处的洞察师，能从一句用户抱怨里听出真实处境、情绪压力和未被表达的需求。你的职场人格适合从人群、场景和长期价值出发，尤其适合 AI 应用、教育、咨询、陪伴、知识服务等需要理解用户心理的方向。你的优势不是把功能堆满，而是能解释为什么这个功能会让人愿意用。求职时要把这份细腻变成可被验证的证据：访谈记录、用户旅程、痛点分级、方案取舍和反馈复盘。这样你的共情不会停留在“感觉”，而会成为产品判断依据。",
+      ENFJ: "你像项目里的共创推动者，擅长把不同角色拉到同一张桌子上：用户愿意讲，业务愿意配合，团队也知道下一步怎么做。你的职场人格很适合行业解决方案、ToB 项目推进、产品运营和客户共创型岗位。AI 产品落地常常不是一个功能问题，而是业务流程、数据条件、组织信任和培训使用的问题，你的沟通与组织能力会很有价值。需要注意的是，别只做“气氛很好”的协调者，要把每次沟通沉淀成需求、约束、风险和决策记录，证明你能推动产品而不是只推动关系。",
       INFP: "你像体验叙事师，会把 AI 产品想象成一段用户旅程，而不是一堆功能按钮。你关注意义、表达、内容质感和使用时的心理感受，适合 AI 创作、教育、内容工具、陪伴产品和体验型应用。你的优势是能发现那些“说不清但很影响使用”的细节：文案是否冒犯、流程是否打断、生成结果是否有温度。求职时，不要让作品只停留在审美和想法，可以用用户故事、原型前后对比、反馈截图和改版理由来证明：你的敏感不是情绪化，而是能转化成更好的产品体验。",
       ENFP: "你像创意发起人，适合站在新玩法、新人群和新传播方式的入口处点火。AI 产品里很多机会来自“原来这也能被 AI 改造”，你容易在内容、社区、教育、娱乐和轻量工具中找到有趣切口。你的优势是感染力、启动速度和把复杂东西讲得让人想试。挑战也明显：热情容易跑在结构前面。建议给自己加一个产品化护栏：每个想法都写清目标用户、核心场景、最小 Demo、验证指标和复盘结论。这样你不只是好玩，而是能把好玩推成结果证据。",
       ISTJ: "你像数据质检官，擅长把混乱材料变成清楚口径，把看似主观的判断变成标准、表格和流程。AI 产品里，评测、标注、质检、数据闭环、项目管理型产品都很需要这种稳定感。你的优势是可靠、细致、可复用，能让团队少踩很多“口径不一致”“结论没出处”的坑。娱乐一点说，你可能是最不愿意乱合并单元格的人。求职时要把严谨包装得更产品化：不要只说自己细心，要展示你如何定义标准、发现问题、推动修正，并让结果在下一轮变得更好。",
-      ESTJ: "你像落地推进官，看到一个模糊任务，会把它拆成责任人、时间点、验收标准和风险清单。你的产品人格适合行业解决方案、项目推进、产品运营、商业化落地等方向，尤其适合需要把 AI 能力真正放进业务流程的岗位。你不太迷恋空谈概念，更在意事情能不能按时交付、结果能不能被验证。需要提醒的是，AI 产品有时会遇到模型效果不稳定、需求变化快的问题，过度追求确定性会让你焦虑。建议保留执行力，同时学会用实验和迭代管理不确定性。",
+      ESTJ: "你像落地推进官，看到一个模糊任务，会把它拆成责任人、时间点、验收标准和风险清单。你的职场人格适合行业解决方案、项目推进、产品运营、商业化落地等方向，尤其适合需要把 AI 能力真正放进业务流程的岗位。你不太迷恋空谈概念，更在意事情能不能按时交付、结果能不能被验证。需要提醒的是，AI 产品有时会遇到模型效果不稳定、需求变化快的问题，过度追求确定性会让你焦虑。建议保留执行力，同时学会用实验和迭代管理不确定性。",
       ISFJ: "你像用户守护者，适合盯住那些别人觉得“小但烦”的体验问题：流程卡顿、说明不清、反馈没人接、功能上线后没人会用。AI 产品不是只要炫技，很多时候决定留存的是稳定、耐心和持续优化。你适合 AI 产品运营、客服/教育/办公场景应用、体验优化和项目支持型岗位。你的优势是服务意识强、观察细、能长期把小问题修到位。求职时可以把用户反馈、FAQ、流程优化、培训材料和改版记录做成作品，让别人看到你不是只会照顾人，而是能把照顾转成产品改进。",
       ESFJ: "你像社群连接官，擅长让用户愿意参与、愿意反馈，也让团队知道用户到底发生了什么。AI 产品早期很需要这种连接能力，因为很多产品还没完全成熟，需要靠社群、活动、共创和运营节奏不断收集信号。你适合 AI 产品运营、用户运营、训练营项目、解决方案交付等方向。你的魅力在于能把冷场拉热，把信息差补齐，把一群人带进同一个节奏。要注意的是，别让自己只成为“热心接口人”，要把活动数据、用户分层、反馈归因和产品建议沉淀出来。",
       ISTP: "你像工具实干派，判断一个想法有没有戏，最想做的往往不是开会，而是先搭一版 Demo 跑跑看。你适合 AI 工具链、自动化、模型平台、内部效率产品和技术型应用产品。你的优势是动手、排障、关注真实可运行的东西，能把抽象讨论变成可验证样品。求职时这很有竞争力，因为 AI 产品岗位越来越喜欢“能用工具把想法做出来”的人。需要补的是表达和复盘：Demo 跑通只是第一步，还要讲清用户是谁、解决什么问题、效果如何、下一版怎么改。",
-      ESTP: "你像增长冲锋派，对机会、反馈和指标很敏感。看到一个入口，你会想能不能测转化；看到一个新玩法，你会想能不能快速上线试试。你的产品人格适合增长、商业化、活动运营、轻量 AI 应用和节奏快的项目。你的优势是行动快、抗压强、愿意用结果说话，适合在不确定场景里先打出反馈。但要注意，AI 产品的增长不能只追短期刺激，也要看模型成本、体验质量和长期留存。建议用实验文档约束自己：假设、样本、指标、结果、复盘缺一不可。",
+      ESTP: "你像增长冲锋派，对机会、反馈和指标很敏感。看到一个入口，你会想能不能测转化；看到一个新玩法，你会想能不能快速上线试试。你的职场人格适合增长、商业化、活动运营、轻量 AI 应用和节奏快的项目。你的优势是行动快、抗压强、愿意用结果说话，适合在不确定场景里先打出反馈。但要注意，AI 产品的增长不能只追短期刺激，也要看模型成本、体验质量和长期留存。建议用实验文档约束自己：假设、样本、指标、结果、复盘缺一不可。",
       ISFP: "你像体验打磨师，容易在细节里发现产品的气质：按钮是否顺手、文案是否自然、生成内容是否有审美、状态反馈是否让人安心。AI 创作工具、内容产品、轻量应用和交互体验优化都很适合你。你的优势不是把功能做得最多，而是把使用过程磨得更像人会喜欢的样子。求职时要避免只说“我审美好”或“我喜欢体验”，可以用前后对比图、用户反馈、交互流程、提示词效果和改版理由来证明你的判断。这样你的感受力会变成可交付的产品能力证据。",
       ESFP: "你像现场带动者，擅长把一个功能讲成大家愿意试的玩法，把一个 AI 工具变成活动、内容或社群里的参与感。你适合 AI 产品运营、泛娱乐应用、内容活动、用户增长和传播型项目。你的优势是表达有感染力、能快速感知用户反应，也能把产品包装得更容易被普通人理解。要注意的是，热闹不是结果，转化、留存、反馈质量和复盘同样重要。建议把每次活动都沉淀成数据和产品建议，让别人看到你不仅能把场子带起来，也能把产品往前推。"
     };
@@ -2027,7 +2183,7 @@
         ["优势信号", strong.map(item => `${item.label}`).join("；") || "暂无明显高分项"],
         ["优先补强", weak.map(item => `${item.label}`).join("；") || "暂无明显短板，继续保持当前准备节奏"]
       ];
-      return { score, baseScore, preparationScore, level, subtitle, summary, notes };
+      return { score, baseScore, preparationScore, level, subtitle, summary, notes, strong, weak };
     }
 
     function renderResults(result) {
@@ -2037,7 +2193,10 @@
 
       document.getElementById("bestRole").textContent = best.name;
       document.getElementById("matchScore").textContent = best.score;
-      document.getElementById("typeCode").textContent = `可行性：${result.background.level} · 产品人格 ${result.persona.code}`;
+      document.getElementById("typeCode").innerHTML = `
+        <span class="type-pill feasibility">可行性：${escapeHtml(result.background.level)}</span>
+        <span class="type-pill persona">职场人格 ${escapeHtml(result.persona.code)}</span>
+      `;
       document.getElementById("shareLabel").textContent = "一键分享";
       document.getElementById("qrShareLabel").textContent = "分享二维码";
       document.getElementById("resultCopy").textContent = closeRace
@@ -2045,7 +2204,7 @@
         : best.summary;
 
       document.getElementById("reasonList").innerHTML = buildReasons(best, result, closeRace ? second : null)
-        .map(reason => `<li>${reason}</li>`)
+        .map(reason => `<li class="reason-${reason.tone}">${reason.text}</li>`)
         .join("");
 
       renderRadar(result.dims);
@@ -2064,17 +2223,17 @@
       const topDim = sortedDims[0];
       const lowDim = sortedDims[sortedDims.length - 1];
       const reasons = [
-        `你的最高能力维度是“${dimLabels[topDim[0]]}”（${topDim[1]} 分），这是 ${role.name} 的关键信号。`,
-        ...role.reasons
+        { tone: "persona", text: `你的最高能力维度是“${dimLabels[topDim[0]]}”（${topDim[1]} 分），这是 ${role.name} 的关键信号。` },
+        ...role.reasons.map(text => ({ tone: "role", text }))
       ];
       if (result.background) {
-        reasons.push(`你的 AI 产品可行性综合得分为 ${result.background.score} 分，属于“${result.background.level}”，建议把岗位选择和背景证据一起包装。`);
+        reasons.push({ tone: "feasibility", text: `你的 AI 产品可行性综合得分为 ${result.background.score} 分，属于“${result.background.level}”，建议把岗位选择和背景证据一起包装。` });
       }
       if (second) {
-        reasons.push(`备选方向“${second.name}”只低 ${role.score - second.score} 分，说明你可以用同一个项目做双方向包装。`);
+        reasons.push({ tone: "role", text: `备选方向“${second.name}”只低 ${role.score - second.score} 分，说明你可以用同一个项目做双方向包装。` });
       }
       if (lowDim[1] < 58) {
-        reasons.push(`当前最需要补的是“${dimLabels[lowDim[0]]}”（${lowDim[1]} 分），建议在项目材料里主动补一份证据。`);
+        reasons.push({ tone: "warning", text: `当前最需要补的是“${dimLabels[lowDim[0]]}”（${lowDim[1]} 分），建议在项目材料里主动补一份证据。` });
       }
       return reasons.slice(0, 6);
     }
@@ -2172,7 +2331,7 @@
       const lowDimText = dimHighlight(lowDim[0]);
 
       const paragraphs = [
-        `你的产品人格是 ${personaName}。${baseProfile} 这个标签不是心理学诊断，也不是给你盖章，而是把你在测评里表现出来的做事方式，翻译成更容易理解的产品求职画像：你更适合怎样发现问题、怎样做决策、怎样推进项目，以及在 AI 产品岗位里应该把什么能力当成主线去展示。`,
+        `你的职场人格是 ${personaName}。${baseProfile} 这个标签不是心理学诊断，也不是给你盖章，而是把你在测评里表现出来的做事方式，翻译成更容易理解的产品求职画像：你更适合怎样发现问题、怎样做决策、怎样推进项目，以及在 AI 产品岗位里应该把什么能力当成主线去展示。`,
         `从四个字母拆开看，${axisText}。合在一起，它不是简单的“外向/内向”标签，而是一套更具体的产品工作偏好：你会用自己舒服的方式建立秩序，再决定如何验证、推进和复盘。这也是为什么同样想做 AI 产品，有的人适合应用场景，有的人适合模型平台，有的人更适合运营、增长或解决方案切入。`,
         `放到这次测评里，你当前最亮的能力信号是 ${topDimText}（${topDim[1]} 分）。系统主推你优先关注 ${roleName}，不是因为其他方向完全不行，而是这个方向更容易把你的能力、人格倾向和背景条件串成一个可讲述的故事。你可以围绕一个真实场景做项目：写清用户、痛点、AI 切入点、Demo、反馈和下一版改法，让面试官看到你已经做过一次产品验证。`,
         `需要留意的是，你当前相对需要补的维度是 ${lowDimText}（${lowDim[1]} 分）。这不是说你不适合，而是提醒你在简历和项目复盘里主动补证据。泛娱乐一点说，${escapeHtml(persona.notes[1]?.[1] || persona.description)} 但求职不能只靠人格魅力通关。更聪明的打法是保留个人风格，同时准备项目地图、关键指标、用户反馈和复盘结论，让“我像什么类型的人”最终落到“我能交付什么结果”。`
@@ -2277,20 +2436,52 @@
       document.getElementById("preparationScore").textContent = background.preparationScore;
       document.getElementById("backgroundLevel").textContent = background.level;
       document.getElementById("backgroundSubtitle").textContent = background.subtitle;
-      document.getElementById("backgroundSummary").textContent = background.summary;
+      document.getElementById("backgroundSummary").innerHTML = buildFeasibilityDetailHtml(background, bestRole, selfChoice);
       document.getElementById("backgroundList").innerHTML = background.notes.map(([title, text]) => {
         return `<li><strong>${title}</strong><span>${text}</span></li>`;
       }).join("");
 
       const fitItems = [
         ["系统推荐", `更建议优先考虑“${bestRole.name}”。这是根据能力、倾向和背景综合算出的推荐方向。`],
-        ["产品人格", `${persona.code} · ${persona.title}。这代表你的做事风格和岗位适配方式。`],
+        ["职场人格", `${persona.code} · ${persona.title}。这代表你的做事风格和岗位适配方式。`],
         ["你的选择", selfChoice],
         ["对照建议", buildChoiceAdvice(selfChoice, bestRole, background.score)]
       ];
       document.getElementById("fitList").innerHTML = fitItems.map(([title, text]) => {
         return `<li><strong>${escapeHtml(title)}</strong><span>${escapeHtml(text)}</span></li>`;
       }).join("");
+    }
+
+    function feasibilityMark(text, tone = "conclusion") {
+      return `<span class="feasibility-mark ${tone}">${escapeHtml(text)}</span>`;
+    }
+
+    function buildFeasibilityDetailHtml(background, bestRole, selfChoice) {
+      const strongText = background.strong.map(item => item.label).join("、") || "暂时还没有特别突出的硬背景信号";
+      const weakText = background.weak.map(item => item.label).join("、") || "目前没有明显低分项";
+      const choiceText = selfChoice ? `你自己写下的方向是“${selfChoice}”。` : "你还没有写下非常明确的自选方向。";
+      const pathAdvice = background.score >= 81
+        ? `可以把“${bestRole.name}”作为主投方向，同时准备 2 到 3 个高度相似 JD，把简历、项目文档和面试故事统一到同一组关键词上。`
+        : background.score >= 70
+          ? `可以尝试投递“${bestRole.name}”，但不要只押大厂校招，更建议同步找中厂、垂类 AI 团队、行业数字化团队和高成长创业公司，把机会面打开。`
+          : background.score >= 60
+            ? `暂时不要把“直接冲 AI 产品经理”当成唯一目标，更适合先用产品运营、项目运营、数据运营、产品助理等岗位进入 AI 团队，再用项目证据往产品岗迁移。`
+            : `当前直接冲 AI 产品岗位风险较高，优先选择 AI 运营、内容运营、用户运营、项目执行类入口，用真实项目和实习经历把背景底盘抬起来。`;
+      const projectAdvice = background.baseScore >= 70
+        ? "你的背景底盘已经有一定解释力，关键是把它翻译成岗位证据：不要只写学校、专业和经历名称，要写你解决过什么问题、用了什么 AI 工具或方法、产出了什么可验证结果。"
+        : "你的背景底盘还需要补证据，最有效的方式不是继续泛泛学习，而是做一个可展示项目：明确目标用户、业务场景、AI 切入点、Demo 截图、测试样本、用户反馈和复盘结论。";
+      const preparationAdvice = background.preparationScore >= 75
+        ? "你的准备工作分相对不错，下一步要做的是对齐 JD：把项目标题、职责描述、能力关键词和面试故事统一起来，避免材料看起来努力很多但方向分散。"
+        : "你的准备工作分还有空间，短期最该补的是目标 JD、岗位关键词、项目文档和复盘材料。没有这些，面试官很难判断你是真的适合 AI 产品，还是只是对 AI 感兴趣。";
+
+      const paragraphs = [
+        `你的 AI 产品可行性综合得分是 ${feasibilityMark(`${background.score} 分`, "conclusion")}，判断为 ${feasibilityMark(background.level, "conclusion")}。这个结论的重点不是给你判定“能不能做产品”，而是判断你现在把自己投向 AI 产品相关岗位时，简历过筛、面试解释和项目说服力有多强。当前系统推荐方向是 ${feasibilityMark(bestRole.name, "action")}，它会和你的能力倾向一起决定岗位包装方式。`,
+        `这套分数里，${feasibilityMark(`背景底盘 ${background.baseScore} 分`, "background")} 占 80%，因为未毕业或转行同学最先被看的往往是学历、学校、专业、实习、平台背书和作品证据；${feasibilityMark(`准备工作 ${background.preparationScore} 分`, "preparation")} 占 20%，代表你是否已经把 JD、简历、项目文档和复盘准备到能被追问的程度。你的优势信号是：${feasibilityMark(strongText, "background")}。优先补强项是：${feasibilityMark(weakText, "preparation")}。`,
+        `${feasibilityMark("具体建议", "action")}：${pathAdvice}${projectAdvice}${preparationAdvice}如果你想投 AI 产品，不要只写“会用 ChatGPT、DeepSeek、Cursor”，而要把它们放进一个业务问题里：原始问题是什么，AI 参与了哪个环节，你如何判断效果，失败样本怎么归因，下一版怎么改。这样的材料才像产品证据。`,
+        `${feasibilityMark("选择对照", "conclusion")}：${escapeHtml(choiceText)}如果你的自选方向和系统推荐一致，就把它作为主线深挖；如果不一致，也不必立刻否定自己的兴趣。更稳的做法是做双版本包装：一版贴近系统推荐岗位，方便求职过筛；一版保留你真实想做的方向，方便长期投入。最终真正有价值的不是测评标签，而是你能否拿出一份让别人相信你已经做过、想清楚过、复盘过的 AI 项目材料。`
+      ];
+
+      return paragraphs.map(paragraph => `<p>${paragraph}</p>`).join("");
     }
 
     function buildChoiceAdvice(choice, bestRole, backgroundScore) {
@@ -2331,9 +2522,9 @@
       const personaCode = document.getElementById("personaCode").textContent;
       const personaTitle = document.getElementById("personaTitle").textContent;
       const shareUrl = ASSESSMENT_URL;
-      const shareText = `我的产品人格是${personaCode}「${personaTitle}」，快来测测你的吧`;
+      const shareText = `我的职场人格是${personaCode}「${personaTitle}」，快来测测你的吧`;
       const shareData = {
-        title: "AI 产品方向测评",
+        title: "测试你的职场人格",
         text: shareText,
         url: shareUrl
       };
@@ -2652,7 +2843,7 @@
 
       const link = document.createElement("a");
       link.href = canvas.toDataURL("image/png");
-      link.download = "AI产品方向测评二维码.png";
+      link.download = "职场人格测评二维码.png";
       document.body.appendChild(link);
       link.click();
       link.remove();
@@ -2688,6 +2879,7 @@
     document.getElementById("qrShareBtn").addEventListener("click", shareQrCode);
 
     renderQuestions();
+    document.getElementById("heroAvatar").innerHTML = createPersonaAvatar({ code: "INTP", ...personas.INTP });
     updateProgress();
   </script>
 </body>
