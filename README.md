@@ -1,30 +1,101 @@
 # 202606AI-
-AI训练营方向选择判断仓库
+
+AI 训练营职场人格与 AI 产品方向测评工具。
 
 ## 页面
 
 - 测评入口：`https://personality.kiraown.com/`
-- 统计后台：`https://personality.kiraown.com/stats.html`
+- 统计后台：`https://personalitystats.kiraown.com/`
 
-`stats.html` 不在测评页暴露入口，并设置了 `noindex`。真正的数据权限由统计接口的 token 控制。
+`CNAME` 只保留 `personality.kiraown.com`，测评页继续走 GitHub Pages。`personalitystats.kiraown.com` 解析到阿里云服务器公网 IP，并由 Nginx 转发到 Node 统计服务。
 
-## 统计接入
+## 统计方案
 
-GitHub Pages 只能托管静态页面，不能直接保存访问和答题数据。当前代码已经预留了统计埋点：
+当前采用阿里云服务器部署：
 
-- `page_view`：打开测评链接
-- `assessment_started`：点击开始测评
-- `assessment_completed`：完成答题并生成结果，包含职场人格、主推岗位、可行性分数和五维分数
+- `index.html`：GitHub Pages 托管测评页。
+- `stats.html`：由阿里云服务器上的 Node 服务展示统计后台。
+- `server/server.js`：Node 后端，提供统计接口和本地持久化。
+- `server/data/submissions.jsonl`：保存每次完成测评的完整答卷。
+- `server/data/state.json`：保存完成总数、每题选项计数、结果分布和最近自由输入文本。
 
-如要启用统计：
+测评页只在用户完成全部题目并点击“生成结果”后上报一次，不统计打开页面数，也不统计点击开始数。同一浏览器同一组答案重复点击生成结果不会重复计数；修改答案后重新生成会视为一次新的完成记录。
 
-1. 部署 `analytics-server.js` 到一台可长期运行 Node 的服务器。
-2. 设置环境变量：
-   - `ANALYTICS_TOKEN`：统计后台查询 token
-   - `ALLOWED_ORIGIN`：允许访问接口的页面域名，例如 `https://personality.kiraown.com`
-   - `PORT`：服务端口，默认 `8788`
-3. 配置子域名，例如 `stats-api.kiraown.com`，反向代理到该 Node 服务。
-4. 把 `index.html` 里的 `ANALYTICS_ENDPOINT` 改成 `https://stats-api.kiraown.com/event`。
-5. 打开 `stats.html`，填写 `https://stats-api.kiraown.com` 和查询 token，即可查看统计。
+## 接口
 
-统计服务会把事件写入 `analytics-events.jsonl`，该文件已加入 `.gitignore`，不要提交到仓库。
+- `POST /api/complete`：保存一次完整测评结果。
+- `GET /api/summary`：读取统计后台汇总数据。
+- `GET /`：展示统计后台页面。
+- `GET /health`：服务健康检查。
+
+默认允许跨域来源：
+
+- `https://personality.kiraown.com`
+- `https://personalitystats.kiraown.com`
+
+如需调整，可配置环境变量：
+
+```text
+ALLOWED_ORIGINS=https://personality.kiraown.com,https://personalitystats.kiraown.com
+```
+
+## 阿里云服务器部署
+
+服务器建议目录：
+
+```bash
+/www/personality-stats
+```
+
+启动服务：
+
+```bash
+cd /www/personality-stats/server
+pm2 start server.js --name personality-stats
+pm2 save
+```
+
+Node 服务默认监听：
+
+```text
+127.0.0.1:8788
+```
+
+Nginx 反向代理：
+
+```nginx
+server {
+    listen 80;
+    server_name personalitystats.kiraown.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:8788;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+上线 HTTPS 后，测评页会向：
+
+```text
+https://personalitystats.kiraown.com/api/complete
+```
+
+上报数据，统计后台会读取：
+
+```text
+https://personalitystats.kiraown.com/api/summary
+```
+
+## 测试
+
+1. 打开 `https://personality.kiraown.com/`，完成一次测评并生成结果。
+2. 打开 `https://personalitystats.kiraown.com/api/summary`，确认 `completions` 增加。
+3. 打开 `https://personalitystats.kiraown.com/`，确认看板显示完成总数、每题选项、主推岗位、职场人格、AI 产品可行性分布。
+4. 在同一浏览器不改答案重复点击生成结果，确认完成总数不增加。
+5. 修改任意答案后重新生成，确认完成总数增加。
+6. 用微信扫码打开测评页，完成测评后确认统计后台更新。

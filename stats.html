@@ -9,14 +9,16 @@
     :root {
       --ink: #18212b;
       --muted: #667085;
+      --soft: #eef3f8;
       --line: #d8dee8;
       --paper: #fff;
       --wash: #f5f7fb;
       --blue: #3157d5;
       --teal: #0f9f8f;
-      --violet: #6d5bd0;
       --orange: #d9822b;
       --rose: #c95464;
+      --green: #2e9d66;
+      --violet: #6d5bd0;
       --shadow: 0 18px 48px rgba(29, 41, 57, 0.1);
     }
 
@@ -25,6 +27,7 @@
     }
 
     body {
+      min-height: 100vh;
       margin: 0;
       color: var(--ink);
       background:
@@ -34,23 +37,25 @@
         var(--wash);
       background-size: 34px 34px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
-      line-height: 1.55;
+      line-height: 1.5;
     }
 
-    button,
-    input {
+    button {
       font: inherit;
     }
 
     .page {
-      width: min(1160px, calc(100% - 32px));
+      width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 28px 0 48px;
+      padding: 40px 0 54px;
     }
 
     .hero,
-    .panel,
-    .card {
+    .section,
+    .metric,
+    .distribution-card,
+    .question,
+    .text-card {
       border: 1px solid var(--line);
       border-radius: 8px;
       background: rgba(255, 255, 255, .94);
@@ -60,8 +65,7 @@
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 28px;
-      margin-bottom: 16px;
+      padding: 34px;
     }
 
     .hero::before {
@@ -72,209 +76,270 @@
       background: linear-gradient(90deg, var(--blue), var(--teal), var(--orange), var(--rose));
     }
 
-    h1 {
+    h1,
+    h2,
+    h3,
+    p {
       margin: 0;
-      font-size: clamp(30px, 4vw, 46px);
-      line-height: 1.08;
+    }
+
+    h1 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.05;
+      letter-spacing: 0;
     }
 
     .lead {
       max-width: 820px;
-      margin: 12px 0 0;
+      margin-top: 14px;
       color: #344054;
-      font-size: 16px;
+      font-size: 17px;
+      font-weight: 700;
     }
 
-    .setup {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(180px, 260px) auto;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    input {
-      min-height: 42px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-      color: var(--ink);
-      padding: 0 12px;
-      outline: none;
-    }
-
-    input:focus {
-      border-color: rgba(49, 87, 213, .72);
-      box-shadow: 0 0 0 3px rgba(49, 87, 213, .14);
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 26px;
     }
 
     .button {
       min-height: 42px;
       border: 0;
       border-radius: 8px;
-      padding: 0 16px;
+      padding: 0 18px;
       color: #fff;
       background: var(--blue);
-      font-weight: 800;
+      font-weight: 900;
       cursor: pointer;
-    }
-
-    .button.secondary {
-      color: var(--ink);
-      border: 1px solid var(--line);
-      background: #fff;
-    }
-
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 10px;
-      margin: 14px 0 0;
     }
 
     .status {
       color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .status.error {
+      color: var(--rose);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      padding: 22px;
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--blue);
+      font-size: clamp(36px, 7vw, 72px);
+      line-height: .95;
+      letter-spacing: 0;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 900;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin: 16px 0;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 18px;
     }
 
-    .card {
-      padding: 18px;
-      box-shadow: none;
+    .section {
+      padding: 24px;
     }
 
-    .card strong {
-      display: block;
-      font-size: 32px;
-      line-height: 1;
-      color: var(--blue);
+    .section h2 {
+      font-size: 24px;
+      line-height: 1.2;
     }
 
-    .card span {
-      display: block;
-      margin-top: 8px;
-      color: #475467;
-      font-size: 13px;
+    .subhead {
+      margin-top: 6px;
+      color: var(--muted);
       font-weight: 800;
     }
 
-    .panel {
-      padding: 20px;
-      margin-top: 14px;
-    }
-
-    .panel h2 {
-      margin: 0 0 14px;
-      font-size: 20px;
-    }
-
-    .columns {
+    .distribution-list,
+    .question-list,
+    .text-list {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      gap: 12px;
+      margin-top: 18px;
     }
 
-    .bar-row {
-      display: grid;
-      grid-template-columns: minmax(120px, 180px) minmax(0, 1fr) 58px;
-      align-items: center;
-      gap: 10px;
-      margin: 12px 0;
+    .distribution-card {
+      padding: 16px;
+      box-shadow: none;
     }
 
-    .bar-label {
-      color: #344054;
-      font-weight: 850;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .card-title {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      color: var(--ink);
+      font-weight: 950;
+    }
+
+    .card-title span:last-child {
+      color: var(--muted);
       white-space: nowrap;
     }
 
     .bar-track {
-      height: 10px;
-      border-radius: 999px;
-      background: #e9eef6;
       overflow: hidden;
+      height: 11px;
+      margin-top: 10px;
+      border-radius: 999px;
+      background: var(--soft);
     }
 
     .bar-fill {
-      width: 0%;
       height: 100%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--teal), var(--blue));
-      transition: width .2s ease;
+      min-width: 3px;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--teal));
     }
 
-    .bar-value {
+    .bar-fill.role {
+      background: linear-gradient(90deg, var(--blue), var(--teal));
+    }
+
+    .bar-fill.persona {
+      background: linear-gradient(90deg, var(--violet), var(--blue));
+    }
+
+    .bar-fill.feasibility {
+      background: linear-gradient(90deg, var(--teal), var(--green));
+    }
+
+    .bar-fill.question-bar {
+      background: linear-gradient(90deg, var(--orange), var(--rose));
+    }
+
+    .questions {
+      margin-top: 18px;
+    }
+
+    .question {
+      padding: 18px;
+      box-shadow: none;
+    }
+
+    .question-head {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .question-number {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--ink);
+      font-weight: 950;
+    }
+
+    .question h3 {
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    .question-total {
       color: var(--muted);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .option-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 82px;
+      gap: 14px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .option-label {
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      color: #344054;
+      font-weight: 850;
+    }
+
+    .option-count {
+      color: var(--muted);
+      font-weight: 900;
       text-align: right;
+      white-space: nowrap;
+    }
+
+    .text-card {
+      padding: 16px;
+      box-shadow: none;
+    }
+
+    .text-card p {
+      color: #344054;
+      font-weight: 750;
+      word-break: break-word;
+    }
+
+    .text-card time {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
       font-size: 13px;
       font-weight: 800;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-    }
-
-    th,
-    td {
-      border-bottom: 1px solid var(--line);
-      padding: 10px 12px;
-      text-align: left;
-      font-size: 13px;
-    }
-
-    th {
-      color: #344054;
-      background: #f7f9fc;
-      font-weight: 900;
-    }
-
-    td {
-      color: #475467;
-    }
-
-    tr:last-child td {
-      border-bottom: 0;
-    }
-
     .empty {
+      margin-top: 16px;
       border: 1px dashed var(--line);
       border-radius: 8px;
-      padding: 22px;
+      padding: 18px;
       color: var(--muted);
+      font-weight: 850;
       background: rgba(255, 255, 255, .7);
-      font-weight: 700;
-    }
-
-    .note {
-      margin-top: 14px;
-      border-left: 4px solid var(--teal);
-      border-radius: 8px;
-      padding: 12px 14px;
-      color: #344054;
-      background: #eefaf8;
-      font-size: 13px;
-      font-weight: 700;
     }
 
     @media (max-width: 860px) {
-      .setup,
-      .grid,
-      .columns {
+      .hero,
+      .section {
+        padding: 24px 18px;
+      }
+
+      .metrics,
+      .grid {
         grid-template-columns: 1fr;
+      }
+
+      .question-head {
+        grid-template-columns: auto minmax(0, 1fr);
+      }
+
+      .question-total {
+        grid-column: 2;
       }
     }
   </style>
@@ -283,270 +348,181 @@
   <main class="page">
     <section class="hero">
       <h1>测评统计后台</h1>
-      <p class="lead">查看测评链接访问量、开始答题人数、完成人数、职场人格占比、主推岗位占比和 AI 产品可行性分层。页面不在测评入口展示，真实数据读取依赖受保护的统计接口。</p>
-      <div class="setup" aria-label="统计接口设置">
-        <input id="endpointInput" type="url" placeholder="统计接口地址，例如 https://stats-api.kiraown.com">
-        <input id="tokenInput" type="password" placeholder="只保存在本机的查询 token">
-        <button class="button" id="loadBtn" type="button">读取统计</button>
-      </div>
+      <p class="lead">这里只展示完成测评后的汇总数据：完成总数、每道题的选项分布、自由输入题文本，以及主推岗位、职场人格和 AI 产品可行性分层。</p>
       <div class="toolbar">
-        <button class="button secondary" id="saveBtn" type="button">保存到本机</button>
-        <button class="button secondary" id="clearBtn" type="button">清除本机配置</button>
-        <span class="status" id="statusText">等待配置统计接口。</span>
+        <button class="button" type="button" id="refreshBtn">刷新看板</button>
+        <span class="status" id="statusText">正在读取...</span>
       </div>
     </section>
 
-    <section class="grid" aria-label="核心指标">
-      <div class="card">
-        <strong id="pageViews">0</strong>
-        <span>打开测评链接</span>
+    <section class="metrics" aria-label="核心指标">
+      <div class="metric">
+        <strong id="completionCount">0</strong>
+        <span>完成测评总数</span>
       </div>
-      <div class="card">
-        <strong id="uniqueVisitors">0</strong>
-        <span>独立访客</span>
+      <div class="metric">
+        <strong id="textCount">0</strong>
+        <span>自由输入填写数</span>
       </div>
-      <div class="card">
-        <strong id="starts">0</strong>
-        <span>开始答题</span>
-      </div>
-      <div class="card">
-        <strong id="completions">0</strong>
-        <span>完成答题</span>
+      <div class="metric">
+        <strong id="questionCount">0</strong>
+        <span>已有统计题目数</span>
       </div>
     </section>
 
-    <section class="grid" aria-label="转化指标">
-      <div class="card">
-        <strong id="startRate">0%</strong>
-        <span>打开到开始率</span>
+    <section class="grid">
+      <div class="section">
+        <h2>最终结果数量</h2>
+        <p class="subhead">主推岗位、职场人格、AI 产品可行性三类分布。</p>
+        <div class="distribution-list" id="roleDistribution"></div>
+        <div class="distribution-list" id="personaDistribution"></div>
+        <div class="distribution-list" id="feasibilityDistribution"></div>
       </div>
-      <div class="card">
-        <strong id="completionRate">0%</strong>
-        <span>开始到完成率</span>
-      </div>
-      <div class="card">
-        <strong id="topPersona">-</strong>
-        <span>最多职场人格</span>
-      </div>
-      <div class="card">
-        <strong id="topRole">-</strong>
-        <span>最多主推岗位</span>
+
+      <div class="section">
+        <h2>自由输入题</h2>
+        <p class="subhead">展示最近填写的“自己真正想做什么方向”。</p>
+        <div class="text-list" id="textAnswers"></div>
       </div>
     </section>
 
-    <div class="columns">
-      <section class="panel">
-        <h2>职场人格占比</h2>
-        <div id="personaChart" class="empty">暂无数据。</div>
-      </section>
-      <section class="panel">
-        <h2>主推岗位占比</h2>
-        <div id="roleChart" class="empty">暂无数据。</div>
-      </section>
-    </div>
-
-    <div class="columns">
-      <section class="panel">
-        <h2>AI 产品可行性分层</h2>
-        <div id="feasibilityChart" class="empty">暂无数据。</div>
-      </section>
-      <section class="panel">
-        <h2>最近完成记录</h2>
-        <div id="recentTable" class="empty">暂无数据。</div>
-      </section>
-    </div>
-
-    <section class="panel">
-      <h2>接入说明</h2>
-      <div class="note">
-        这个页面不会在首页出现，也不会把查询 token 写进代码。真正的“仅本人可见”需要统计接口校验 token 或后台登录；仅靠 GitHub Pages 无法保护数据。推荐后续使用 stats.kiraown.com 或 api.kiraown.com 绑定一个轻量后端。
-      </div>
+    <section class="section questions">
+      <h2>每道题选项统计</h2>
+      <p class="subhead">每张卡片显示该题各选项的选择人数和占比。</p>
+      <div class="question-list" id="questionStats"></div>
     </section>
   </main>
 
   <script>
     const SITE_ID = "workplace-personality";
-    const STORAGE_ENDPOINT = "workplace_personality_stats_endpoint";
-    const STORAGE_TOKEN = "workplace_personality_stats_token";
+    const STATS_API_BASE = location.hostname === "personalitystats.kiraown.com"
+      ? location.origin
+      : "https://personalitystats.kiraown.com";
 
-    const endpointInput = document.getElementById("endpointInput");
-    const tokenInput = document.getElementById("tokenInput");
     const statusText = document.getElementById("statusText");
+    const completionCount = document.getElementById("completionCount");
+    const textCount = document.getElementById("textCount");
+    const questionCount = document.getElementById("questionCount");
+    const roleDistribution = document.getElementById("roleDistribution");
+    const personaDistribution = document.getElementById("personaDistribution");
+    const feasibilityDistribution = document.getElementById("feasibilityDistribution");
+    const textAnswers = document.getElementById("textAnswers");
+    const questionStats = document.getElementById("questionStats");
 
-    endpointInput.value = localStorage.getItem(STORAGE_ENDPOINT) || "";
-    tokenInput.value = localStorage.getItem(STORAGE_TOKEN) || "";
+    document.getElementById("refreshBtn").addEventListener("click", loadSummary);
 
-    document.getElementById("saveBtn").addEventListener("click", () => {
-      localStorage.setItem(STORAGE_ENDPOINT, endpointInput.value.trim());
-      localStorage.setItem(STORAGE_TOKEN, tokenInput.value.trim());
-      setStatus("已保存到本机。");
-    });
-
-    document.getElementById("clearBtn").addEventListener("click", () => {
-      localStorage.removeItem(STORAGE_ENDPOINT);
-      localStorage.removeItem(STORAGE_TOKEN);
-      endpointInput.value = "";
-      tokenInput.value = "";
-      renderStats({});
-      setStatus("已清除本机配置。");
-    });
-
-    document.getElementById("loadBtn").addEventListener("click", loadStats);
-
-    function setStatus(text, isError = false) {
-      statusText.textContent = text;
-      statusText.style.color = isError ? "#c95464" : "#667085";
-    }
-
-    function statsUrl(endpoint, token) {
-      const clean = endpoint.trim().replace(/\/$/, "");
-      const url = new URL(clean.endsWith("/stats") ? clean : `${clean}/stats`);
-      url.searchParams.set("siteId", SITE_ID);
-      if (token) url.searchParams.set("token", token);
-      return url.toString();
-    }
-
-    async function loadStats() {
-      const endpoint = endpointInput.value.trim();
-      const token = tokenInput.value.trim();
-      if (!endpoint) {
-        setStatus("请先填写统计接口地址。", true);
-        return;
-      }
-      setStatus("正在读取统计数据...");
+    async function loadSummary() {
+      setStatus("正在读取...");
       try {
-        const response = await fetch(statsUrl(endpoint, token), {
-          headers: token ? { "Authorization": `Bearer ${token}` } : {}
-        });
+        const url = new URL(`${STATS_API_BASE.replace(/\/$/, "")}/api/summary`);
+        url.searchParams.set("siteId", SITE_ID);
+        const response = await fetch(url.toString(), { cache: "no-store" });
         if (!response.ok) throw new Error(`接口返回 ${response.status}`);
         const data = await response.json();
-        renderStats(normalizeStats(data));
-        setStatus(`已更新：${new Date().toLocaleString("zh-CN")}`);
+        if (!data.ok) throw new Error(data.error || "接口返回异常");
+        renderDashboard(data);
+        setStatus(`已更新：${formatTime(data.updatedAt || new Date().toISOString())}`);
       } catch (error) {
         setStatus(`读取失败：${error.message}`, true);
       }
     }
 
-    function normalizeStats(data = {}) {
-      const summary = data.summary || data;
-      const pageViews = Number(summary.pageViews || summary.views || 0);
-      const uniqueVisitors = Number(summary.uniqueVisitors || summary.visitors || 0);
-      const starts = Number(summary.starts || summary.assessmentStarts || 0);
-      const completions = Number(summary.completions || summary.completed || 0);
-      const personas = summary.personas || summary.personaDistribution || [];
-      const roles = summary.roles || summary.roleDistribution || [];
-      const feasibility = summary.feasibility || summary.feasibilityDistribution || [];
-      const recent = summary.recent || summary.recentCompletions || [];
-      return {
-        pageViews,
-        uniqueVisitors,
-        starts,
-        completions,
-        startRate: pageViews ? Math.round((starts / pageViews) * 100) : 0,
-        completionRate: starts ? Math.round((completions / starts) * 100) : 0,
-        personas,
-        roles,
-        feasibility,
-        recent
-      };
+    function renderDashboard(data) {
+      completionCount.textContent = formatNumber(data.completions || 0);
+      textCount.textContent = formatNumber(data.textAnswers?.filled || 0);
+      questionCount.textContent = formatNumber((data.questionStats || []).length);
+
+      roleDistribution.innerHTML = renderDistributionBlock("主推岗位", data.resultStats?.roles || [], "role");
+      personaDistribution.innerHTML = renderDistributionBlock("职场人格", data.resultStats?.personas || [], "persona");
+      feasibilityDistribution.innerHTML = renderDistributionBlock("AI 产品可行性", data.resultStats?.feasibility || [], "feasibility");
+      textAnswers.innerHTML = renderTextAnswers(data.textAnswers?.recent || []);
+      questionStats.innerHTML = renderQuestionStats(data.questionStats || []);
     }
 
-    function renderStats(stats) {
-      const normalized = normalizeStats(stats);
-      setText("pageViews", normalized.pageViews);
-      setText("uniqueVisitors", normalized.uniqueVisitors);
-      setText("starts", normalized.starts);
-      setText("completions", normalized.completions);
-      setText("startRate", `${normalized.startRate}%`);
-      setText("completionRate", `${normalized.completionRate}%`);
-      setText("topPersona", topLabel(normalized.personas, "code"));
-      setText("topRole", topLabel(normalized.roles, "name"));
-      renderBars("personaChart", normalized.personas, item => `${item.code || item.label || "-"} ${item.title || ""}`.trim());
-      renderBars("roleChart", normalized.roles, item => item.name || item.label || "-");
-      renderBars("feasibilityChart", normalized.feasibility, item => item.level || item.label || "-");
-      renderRecent(normalized.recent);
+    function renderDistributionBlock(title, items, tone) {
+      const body = items.length
+        ? items.map(item => renderDistributionItem(item, tone)).join("")
+        : `<div class="empty">暂无${escapeHtml(title)}数据。</div>`;
+      return `<div>
+        <h3>${escapeHtml(title)}</h3>
+        ${body}
+      </div>`;
     }
 
-    function setText(id, value) {
-      document.getElementById(id).textContent = value;
+    function renderDistributionItem(item, tone) {
+      const percent = Number(item.percent || 0);
+      return `<article class="distribution-card">
+        <div class="card-title">
+          <span>${escapeHtml(item.label || "未命名")}</span>
+          <span>${formatNumber(item.count || 0)} 人 · ${percent}%</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill ${tone}" style="width:${percent}%"></div></div>
+      </article>`;
     }
 
-    function topLabel(list, key) {
-      if (!Array.isArray(list) || !list.length) return "-";
-      const top = [...list].sort((a, b) => Number(b.count || 0) - Number(a.count || 0))[0];
-      return top[key] || top.label || "-";
-    }
-
-    function renderBars(id, list, labeler) {
-      const target = document.getElementById(id);
-      if (!Array.isArray(list) || !list.length) {
-        target.className = "empty";
-        target.textContent = "暂无数据。";
-        return;
+    function renderTextAnswers(items) {
+      if (!items.length) {
+        return `<div class="empty">暂无自由输入内容。</div>`;
       }
-      const max = Math.max(...list.map(item => Number(item.count || 0)), 1);
-      target.className = "";
-      target.innerHTML = list.map(item => {
-        const count = Number(item.count || 0);
-        const percent = Number(item.percent || Math.round((count / max) * 100));
-        const width = Math.max(4, Math.round((count / max) * 100));
-        return `
-          <div class="bar-row">
-            <div class="bar-label" title="${escapeHtml(labeler(item))}">${escapeHtml(labeler(item))}</div>
-            <div class="bar-track"><div class="bar-fill" style="width:${width}%"></div></div>
-            <div class="bar-value">${count} / ${percent}%</div>
+      return items.map(item => `<article class="text-card">
+        <p>${escapeHtml(item.text)}</p>
+        <time>${formatTime(item.completedAt)}</time>
+      </article>`).join("");
+    }
+
+    function renderQuestionStats(questions) {
+      if (!questions.length) {
+        return `<div class="empty">暂无题目统计。完成一次测评后，这里会出现每道题的选项数量。</div>`;
+      }
+      return questions.map(question => `<article class="question">
+        <div class="question-head">
+          <div class="question-number">${String(question.index || 0).padStart(2, "0")}</div>
+          <h3>${escapeHtml(question.text || question.id)}</h3>
+          <div class="question-total">${formatNumber(question.total || 0)} 次选择</div>
+        </div>
+        ${(question.options || []).map(renderQuestionOption).join("")}
+      </article>`).join("");
+    }
+
+    function renderQuestionOption(option) {
+      const percent = Number(option.percent || 0);
+      return `<div class="option-row">
+        <div>
+          <div class="option-label">
+            <span>${escapeHtml(option.label || option.value || "未命名选项")}</span>
+            <span>${percent}%</span>
           </div>
-        `;
-      }).join("");
+          <div class="bar-track"><div class="bar-fill question-bar" style="width:${percent}%"></div></div>
+        </div>
+        <div class="option-count">${formatNumber(option.count || 0)} 人</div>
+      </div>`;
     }
 
-    function renderRecent(list) {
-      const target = document.getElementById("recentTable");
-      if (!Array.isArray(list) || !list.length) {
-        target.className = "empty";
-        target.textContent = "暂无数据。";
-        return;
-      }
-      target.className = "";
-      target.innerHTML = `
-        <table>
-          <thead>
-            <tr>
-              <th>时间</th>
-              <th>人格</th>
-              <th>岗位</th>
-              <th>可行性</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${list.slice(0, 12).map(item => `
-              <tr>
-                <td>${escapeHtml(formatTime(item.occurredAt || item.createdAt || item.time || ""))}</td>
-                <td>${escapeHtml(item.personaCode || item.code || "-")}</td>
-                <td>${escapeHtml(item.topRole || item.role || "-")}</td>
-                <td>${escapeHtml(item.feasibilityLevel || item.level || "-")}</td>
-              </tr>
-            `).join("")}
-          </tbody>
-        </table>
-      `;
+    function setStatus(text, isError = false) {
+      statusText.textContent = text;
+      statusText.classList.toggle("error", isError);
+    }
+
+    function formatNumber(value) {
+      return Number(value || 0).toLocaleString("zh-CN");
     }
 
     function formatTime(value) {
-      if (!value) return "-";
+      if (!value) return "未知时间";
       const date = new Date(value);
-      return Number.isNaN(date.getTime()) ? value : date.toLocaleString("zh-CN");
+      if (Number.isNaN(date.getTime())) return value;
+      return date.toLocaleString("zh-CN", { hour12: false });
     }
 
     function escapeHtml(value) {
-      return String(value).replace(/[&<>"']/g, char => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#039;"
-      }[char]));
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
     }
+
+    loadSummary();
   </script>
 </body>
 </html>

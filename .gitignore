@@ -1,3 +1,6 @@
 analytics-events.jsonl
 .DS_Store
 node_modules/
+.env
+.env.*
+server/data/

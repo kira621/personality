@@ -1251,8 +1251,10 @@
 
   <script>
     const ASSESSMENT_URL = "https://personality.kiraown.com/";
-    const ANALYTICS_ENDPOINT = "";
+    const COMPLETION_ENDPOINT = "https://personalitystats.kiraown.com/api/complete";
     const ANALYTICS_SITE_ID = "workplace-personality";
+    const LAST_COMPLETION_KEY = "workplace_personality_last_completion_signature";
+    let pendingCompletionSignature = "";
 
     const dimLabels = {
       business: "用户/业务理解",
@@ -1272,55 +1274,162 @@
 
     function getVisitorId() {
       const key = "workplace_personality_visitor_id";
-      let visitorId = localStorage.getItem(key);
+      let visitorId = safeStorageGet(key);
       if (!visitorId) {
-        const randomPart = crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+        const randomPart = window.crypto && crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
         visitorId = `visitor-${randomPart}`;
-        localStorage.setItem(key, visitorId);
+        safeStorageSet(key, visitorId);
       }
       return visitorId;
     }
 
-    function trackAnalyticsEvent(eventName, detail = {}) {
-      if (!ANALYTICS_ENDPOINT) return;
-      const payload = {
-        siteId: ANALYTICS_SITE_ID,
-        eventName,
-        visitorId: getVisitorId(),
-        path: location.pathname,
-        referrer: document.referrer || "",
-        userAgent: navigator.userAgent,
-        occurredAt: new Date().toISOString(),
-        detail
-      };
-      const body = JSON.stringify(payload);
-      if (navigator.sendBeacon) {
-        const sent = navigator.sendBeacon(ANALYTICS_ENDPOINT, new Blob([body], { type: "application/json" }));
-        if (sent) return;
+    function safeStorageGet(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch {
+        return null;
       }
-      fetch(ANALYTICS_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body,
-        mode: "cors",
-        keepalive: true
-      }).catch(() => {});
     }
 
-    function buildAnalyticsResult(result) {
+    function safeStorageSet(key, value) {
+      try {
+        localStorage.setItem(key, value);
+      } catch {
+        // Ignore storage errors in privacy mode; backend de-duplication still works.
+      }
+    }
+
+    function simpleHash(text) {
+      let hash = 2166136261;
+      for (let index = 0; index < text.length; index += 1) {
+        hash ^= text.charCodeAt(index);
+        hash = Math.imul(hash, 16777619);
+      }
+      return (hash >>> 0).toString(16).padStart(8, "0");
+    }
+
+    async function hashText(text) {
+      if (window.crypto && crypto.subtle && window.TextEncoder) {
+        const data = new TextEncoder().encode(text);
+        const digest = await crypto.subtle.digest("SHA-256", data);
+        return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, "0")).join("");
+      }
+      return simpleHash(text);
+    }
+
+    function getAnswerLabel(question, value) {
+      if (question.type === "likert") {
+        const number = Number(value);
+        return Number.isFinite(number) ? `${number} · ${likertLabels[number - 1] || ""}` : "";
+      }
+      if (question.type === "choice") {
+        return value === "left" ? question.left.label : question.right.label;
+      }
+      if (question.type === "single") {
+        const option = question.options.find(item => item.value === value);
+        return option ? option.label : "";
+      }
+      return String(value || "").trim() ? "已填写" : "未填写";
+    }
+
+    function buildAnswerRecords() {
+      const answers = getAnswers();
+      return questions.map((question, index) => {
+        const rawValue = answers[question.id];
+        const value = typeof rawValue === "string" ? rawValue.trim() : String(rawValue || "");
+        const record = {
+          id: question.id,
+          index: index + 1,
+          type: question.type,
+          text: question.text,
+          tags: question.tags || [],
+          value,
+          label: getAnswerLabel(question, value)
+        };
+        if (question.type === "text") {
+          record.textValue = value;
+        }
+        return record;
+      });
+    }
+
+    function buildCompletionPayload(result) {
       const best = result.ranked[0] || {};
+      const answers = buildAnswerRecords();
+      const signatureSource = answers.map(answer => ({
+        id: answer.id,
+        value: answer.value,
+        textValue: answer.textValue || ""
+      }));
       return {
         personaCode: result.persona.code,
-        personaTitle: result.persona.title,
-        topRole: best.name || "",
-        topRoleScore: best.score || 0,
-        feasibilityScore: result.background.score,
-        feasibilityLevel: result.background.level,
-        backgroundBaseScore: result.background.baseScore,
-        preparationScore: result.background.preparationScore,
-        dimensions: result.dims,
-        selfChoice: result.selfChoice || ""
+        siteId: ANALYTICS_SITE_ID,
+        visitorId: getVisitorId(),
+        answerSignature: JSON.stringify(signatureSource),
+        completedAt: new Date().toISOString(),
+        page: {
+          path: location.pathname,
+          referrer: document.referrer || "",
+          userAgent: navigator.userAgent
+        },
+        answers,
+        results: {
+          topRole: {
+            id: best.id || "",
+            name: best.name || "",
+            short: best.short || "",
+            score: best.score || 0,
+            skillScore: best.skillScore || 0,
+            feasibilityScore: best.feasibilityScore || result.background.score || 0
+          },
+          persona: {
+            code: result.persona.code,
+            title: result.persona.title,
+            subtitle: result.persona.subtitle
+          },
+          feasibility: {
+            score: result.background.score,
+            level: result.background.level,
+            subtitle: result.background.subtitle,
+            baseScore: result.background.baseScore,
+            preparationScore: result.background.preparationScore
+          },
+          dimensions: result.dims,
+          traits: result.traits,
+          selfChoice: result.selfChoice || ""
+        }
       };
+    }
+
+    async function submitCompletion(result) {
+      if (!COMPLETION_ENDPOINT) return;
+      const payload = buildCompletionPayload(result);
+      if (safeStorageGet(LAST_COMPLETION_KEY) === payload.answerSignature || pendingCompletionSignature === payload.answerSignature) {
+        return;
+      }
+
+      pendingCompletionSignature = payload.answerSignature;
+      payload.submissionId = await hashText(`${payload.visitorId}:${payload.answerSignature}`);
+      const body = JSON.stringify(payload);
+
+      try {
+        const response = await fetch(COMPLETION_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body,
+          mode: "cors",
+          keepalive: true
+        });
+        if (response.ok) {
+          safeStorageSet(LAST_COMPLETION_KEY, payload.answerSignature);
+        }
+      } catch {
+        // Do not block students from seeing results when analytics is unavailable.
+      } finally {
+        if (pendingCompletionSignature === payload.answerSignature) {
+          pendingCompletionSignature = "";
+        }
+      }
     }
 
     const questions = [
@@ -2913,11 +3022,7 @@
       }
       alertBox.classList.remove("show");
       renderResults(result);
-      trackAnalyticsEvent("assessment_completed", buildAnalyticsResult(result));
-    });
-
-    document.getElementById("startAssessmentBtn").addEventListener("click", () => {
-      trackAnalyticsEvent("assessment_started");
+      submitCompletion(result);
     });
 
     document.getElementById("resetBtn").addEventListener("click", () => {
@@ -2933,7 +3038,6 @@
     renderQuestions();
     document.getElementById("heroAvatar").innerHTML = createPersonaAvatar({ code: "INTP", ...personas.INTP });
     updateProgress();
-    trackAnalyticsEvent("page_view");
   </script>
 </body>
 </html>
